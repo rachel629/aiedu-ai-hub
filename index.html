@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI at aiEDU | Staff Resource Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a1f3c;--navy-mid:#252a50;--navy-light:#2d3461;
+  --teal:#18DCDC;--teal-dark:#006464;--teal-light:#DBFBFB;--teal-pale:#edfcfc;
+  --orange:#F5501C;--pink:#F25BB6;
+  --white:#fff;--gray-100:#f7f8fc;--gray-200:#eef0f7;--gray-300:#d1d5e0;--gray-600:#4b5570;--text:#1a1f3c;
+  --radius:16px;--radius-sm:10px;
+  --shadow-sm:0 2px 12px rgba(26,31,60,.08);--shadow:0 4px 24px rgba(26,31,60,.12);
+  --c-write:#3b82f6;--c-notes:#8b5cf6;--c-design:#ec4899;--c-research:#f59e0b;--c-auto:#f97316;--c-vibe:#18DCDC;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--gray-100);color:var(--text);min-height:100vh}
+
+/* ── HEADER ── */
+header{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.logo-wrap{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+header img.logo{height:34px}
+.logo-text{color:#fff;font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:800}
+.hbadge{background:rgba(24,220,220,.18);color:var(--teal);font-size:.73rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .85rem;border-radius:99px;border:1px solid rgba(24,220,220,.3)}
+
+/* ── TAB NAV ── */
+.tab-nav{background:var(--navy-mid);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;position:sticky;top:64px;z-index:190;border-bottom:2px solid rgba(255,255,255,.08)}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{display:flex;align-items:center;gap:.4rem;padding:0 1.2rem;height:48px;white-space:nowrap;font-size:.83rem;font-weight:600;color:rgba(255,255,255,.55);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;transition:color .2s,border-color .2s;font-family:inherit;flex-shrink:0}
+.tab-btn:hover{color:rgba(255,255,255,.85)}
+.tab-btn.active{color:#fff}
+.tab-btn[data-tab="home"].active{border-bottom-color:var(--teal)}
+.tab-btn[data-tab="writing"].active{border-bottom-color:var(--c-write)}
+.tab-btn[data-tab="notes"].active{border-bottom-color:var(--c-notes)}
+.tab-btn[data-tab="design"].active{border-bottom-color:var(--c-design)}
+.tab-btn[data-tab="research"].active{border-bottom-color:var(--c-research)}
+.tab-btn[data-tab="automations"].active{border-bottom-color:var(--c-auto)}
+.tab-btn[data-tab="vibecoding"].active{border-bottom-color:var(--c-vibe)}
+
+/* ── PANELS ── */
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* ── SHARED ── */
+.wrap{max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+.wrap-sm{max-width:760px;margin:0 auto;padding:2rem 2rem}
+.slabel{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.4rem}
+.stitle{font-family:'Poppins',sans-serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:.45rem}
+.ssub{font-size:.95rem;color:var(--gray-600);line-height:1.65;margin-bottom:1.75rem}
+
+/* ── SECTION HERO BAND ── */
+.shero{padding:2.5rem 2rem 2.75rem;color:#fff;position:relative;overflow:hidden}
+.shero-inner{max-width:900px;margin:0 auto}
+.shero h1{font-family:'Poppins',sans-serif;font-size:clamp(1.6rem,4vw,2.3rem);font-weight:900;margin-bottom:.5rem}
+.shero p{font-size:.98rem;opacity:.88;line-height:1.65;max-width:560px}
+.sicon{font-size:2.2rem;display:block;margin-bottom:.65rem}
+.shero.write{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+.shero.notes{background:linear-gradient(135deg,#6d28d9,#8b5cf6)}
+.shero.design{background:linear-gradient(135deg,#be185d,#ec4899)}
+.shero.research{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.shero.auto{background:linear-gradient(135deg,#c2410c,#f97316)}
+.shero.vibe{background:linear-gradient(135deg,var(--navy),var(--navy-light))}
+
+/* ── TOOL CARDS ── */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.1rem;margin-bottom:1.75rem}
+.tcard{background:#fff;border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow-sm);border:2px solid var(--gray-200);transition:border-color .2s,transform .2s}
+.tcard:hover{transform:translateY(-3px)}
+.tcard-name{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:800;margin-bottom:.15rem}
+.tcard-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.18rem .6rem;border-radius:99px;display:inline-block;margin-bottom:.6rem}
+.tcard-desc{font-size:.855rem;color:var(--gray-600);line-height:1.6;margin-bottom:.5rem}
+.tcard-tip{font-size:.8rem;font-style:italic;color:var(--gray-600)}
+.tcard a{font-size:.78rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;margin-top:.65rem}
+/* Tag colours by section */
+.write .tcard-tag{background:#dbeafe;color:#1d4ed8}
+.notes .tcard-tag{background:#ede9fe;color:#6d28d9}
+.design .tcard-tag{background:#fce7f3;color:#be185d}
+.research .tcard-tag{background:#fef3c7;color:#b45309}
+.auto .tcard-tag{background:#ffedd5;color:#c2410c}
+.vibe .tcard-tag{background:var(--teal-pale);color:var(--teal-dark)}
+
+/* ── CALLOUT ── */
+.callout{border-left:4px solid;border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:.9rem 1.1rem;margin-top:1.2rem}
+.callout.teal{background:var(--teal-pale);border-left-color:var(--teal)}
+.callout.yellow{background:#fffbeb;border-left-color:#f59e0b}
+.callout.blue{background:#eff6ff;border-left-color:#3b82f6}
+.callout.green{background:#f0fdf4;border-left-color:#22c55e}
+.callout strong{display:block;font-size:.8rem;font-weight:800;margin-bottom:.3rem}
+.callout p,.callout ul{font-size:.855rem;color:var(--gray-600);line-height:1.6}
+.callout ul{padding-left:1.2rem;margin-top:.35rem}
+
+/* ── PROMPTS ── */
+.pblock{background:var(--navy);border-radius:var(--radius-sm);padding:1rem 1.2rem;margin-top:1.2rem}
+.pblock-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.55rem}
+.pitem{font-family:'Courier New',monospace;font-size:.82rem;color:#e8fffe;padding:.4rem 0;border-bottom:1px solid rgba(24,220,220,.1);line-height:1.5}
+.pitem:last-child{border-bottom:none}
+
+/* ── ACCORDION TIPS ── */
+.acc-list{display:flex;flex-direction:column;gap:.55rem}
+.acc-item{background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius-sm);overflow:hidden}
+.acc-toggle{width:100%;display:flex;align-items:center;gap:.85rem;padding:.95rem 1.2rem;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit}
+.acc-icon{font-size:1.15rem;flex-shrink:0}
+.acc-title{flex:1;font-size:.93rem;font-weight:700;color:var(--text)}
+.acc-chev{font-size:.88rem;color:var(--gray-600);transition:transform .25s}
+.acc-item.open .acc-chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.acc-item.open .acc-body{max-height:600px}
+.acc-inner{padding:0 1.2rem 1.2rem;font-size:.86rem;color:var(--gray-600);line-height:1.7}
+.acc-inner ul{list-style:none;display:flex;flex-direction:column;gap:.3rem;margin-top:.5rem}
+.acc-inner li{font-family:'Courier New',monospace;font-size:.83rem;color:var(--text);background:var(--gray-100);padding:.4rem .75rem;border-radius:6px;border-left:3px solid var(--teal);line-height:1.5}
+
+/* ── HOME QUIZ ── */
+.quiz-box{background:#fff;border-radius:var(--radius);padding:2.25rem 2rem;box-shadow:var(--shadow-sm);margin-bottom:2.25rem}
+.quiz-title{font-family:'Poppins',sans-serif;font-size:1.45rem;font-weight:800;margin-bottom:.3rem}
+.quiz-sub{font-size:.93rem;color:var(--gray-600);margin-bottom:1.5rem}
+.quiz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.85rem}
+.qcard{border:2px solid var(--gray-200);border-radius:var(--radius-sm);padding:1rem 1.1rem;cursor:pointer;transition:all .2s;background:var(--gray-100);display:flex;align-items:flex-start;gap:.7rem}
+.qcard:hover,.qcard.sel{border-color:var(--teal);background:var(--teal-pale);box-shadow:0 0 0 3px rgba(24,220,220,.15)}
+.qcard-icon{font-size:1.4rem;flex-shrink:0;margin-top:.05rem}
+.qcard-text{font-size:.875rem;font-weight:600;line-height:1.45}
+.quiz-rec{display:none;margin-top:1.4rem;border-radius:var(--radius-sm);overflow:hidden}
+.quiz-rec.show{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qrec-inner{background:var(--navy);color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.qrec-text{font-size:.92rem;line-height:1.5}
+.qrec-text strong{display:block;font-family:'Poppins',sans-serif;font-size:.98rem;margin-bottom:.2rem;color:var(--teal)}
+.qrec-btn{background:var(--teal);color:var(--navy);font-size:.85rem;font-weight:800;padding:.6rem 1.4rem;border-radius:99px;border:none;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
+
+/* ── OVERVIEW CARDS ── */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.ovcard{border-radius:var(--radius);padding:1.4rem;color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.ovcard:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.ovcard span{font-size:1.8rem;display:block;margin-bottom:.55rem}
+.ovcard h3{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:800;margin-bottom:.3rem}
+.ovcard p{font-size:.8rem;opacity:.85;line-height:1.5}
+.ov-w{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+.ov-n{background:linear-gradient(135deg,#6d28d9,#8b5cf6)}
+.ov-d{background:linear-gradient(135deg,#be185d,#ec4899)}
+.ov-r{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.ov-a{background:linear-gradient(135deg,#c2410c,#f97316)}
+.ov-v{background:linear-gradient(135deg,var(--teal-dark),var(--teal))}
+
+/* ── VIBE CODING STEPS ── */
+.dot-track{display:flex;align-items:center;justify-content:center;gap:0;margin:1.5rem 0 .75rem;overflow-x:auto;padding:4px 0}
+.s-dot{width:38px;height:38px;border-radius:50%;border:3px solid var(--gray-300);background:#fff;color:var(--gray-600);font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .25s}
+.s-dot.active{border-color:var(--teal);background:var(--teal);color:var(--navy);box-shadow:0 0 0 4px rgba(24,220,220,.22)}
+.s-dot.done{border-color:var(--teal-dark);background:var(--teal-dark);color:#fff}
+.s-line{flex:1;min-width:14px;height:3px;background:var(--gray-300);transition:background .3s}
+.s-line.done{background:var(--teal-dark)}
+.prog-bar{background:var(--gray-200);border-radius:99px;height:7px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--teal-dark),var(--teal));border-radius:99px;width:0%;transition:width .5s ease}
+.prog-label{font-size:.77rem;color:var(--gray-600);text-align:right;margin-top:.3rem;margin-bottom:1.4rem;font-weight:500}
+.step-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.step-head{background:var(--navy);padding:1.6rem 1.75rem;color:#fff;position:relative;overflow:hidden}
+.step-head::after{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--teal)}
+.step-badge{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.35rem}
+.step-head h2{font-family:'Poppins',sans-serif;font-size:1.45rem;font-weight:800}
+.step-body{padding:1.75rem}
+.step-intro{font-size:.93rem;color:var(--gray-600);line-height:1.7;margin-bottom:1.2rem}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.checklist li{display:flex;align-items:flex-start;gap:.7rem}
+.c-box{width:24px;height:24px;min-width:24px;border:2.5px solid var(--gray-300);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;margin-top:2px;background:#fff;font-size:.78rem;font-weight:800;color:var(--navy);user-select:none}
+.c-box:hover{border-color:var(--teal)}
+.c-box.checked{background:var(--teal);border-color:var(--teal)}
+.c-label{font-size:.9rem;font-weight:500;line-height:1.5;cursor:pointer}
+.c-label.checked{color:var(--gray-600);text-decoration:line-through}
+.step-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;gap:1rem}
+.nbtn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.4rem;border-radius:99px;font-size:.9rem;font-weight:700;cursor:pointer;border:none;transition:all .2s;font-family:inherit}
+.nbtn.prev{background:var(--gray-100);color:var(--text);border:2px solid var(--gray-300)}
+.nbtn.prev:disabled{opacity:.4;cursor:not-allowed}
+.nbtn.next{background:var(--navy);color:var(--teal);box-shadow:0 4px 16px rgba(26,31,60,.3)}
+.nbtn.next:hover{transform:translateY(-2px)}
+.nbtn.finish{background:linear-gradient(135deg,var(--orange),#d43e10);color:#fff}
+.step-count{font-size:.8rem;color:var(--gray-600);font-weight:600}
+.done-banner{display:none;background:linear-gradient(135deg,var(--navy),var(--teal-dark));color:#fff;text-align:center;padding:2.5rem 2rem;border-radius:var(--radius);margin-top:1.5rem}
+.done-banner.show{display:block;animation:popIn .4s ease}
+@keyframes popIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.done-banner h2{font-family:'Poppins',sans-serif;font-size:1.7rem;font-weight:900;color:var(--teal);margin-bottom:.4rem}
+
+/* ── PICK YOUR TOOL ── */
+.diff-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:.3rem .85rem;border-radius:99px;margin-bottom:.9rem}
+.diff-b{background:#dcfce7;color:#166534}
+.diff-i{background:#fef9c3;color:#854d0e}
+.diff-a{background:#fee2e2;color:#991b1b}
+.picker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-bottom:2rem}
+.pcard{background:#fff;border-radius:var(--radius);padding:1.2rem;border:2px solid var(--gray-200);transition:transform .2s,border-color .2s}
+.pcard:hover{transform:translateY(-3px);border-color:var(--teal)}
+.pcard h4{font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:800;margin-bottom:.2rem}
+.pcard .pc-cat{font-size:.67rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--gray-600);margin-bottom:.55rem}
+.pcard .pc-desc{font-size:.8rem;color:var(--gray-600);line-height:1.55;margin-bottom:.65rem}
+.pros,.cons{list-style:none;display:flex;flex-direction:column;gap:.2rem}
+.pros li{font-size:.75rem;color:#166534;display:flex;gap:.35rem}
+.pros li::before{content:'✓';flex-shrink:0}
+.cons{margin-top:.35rem}
+.cons li{font-size:.75rem;color:#991b1b;display:flex;gap:.35rem}
+.cons li::before{content:'–';flex-shrink:0}
+
+/* ── REF TABLE ── */
+.rtable{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-top:1.4rem}
+.rtable th{background:var(--navy);color:var(--teal);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.8rem 1.2rem;text-align:left}
+.rtable td{padding:.85rem 1.2rem;font-size:.86rem;border-bottom:1px solid var(--gray-200);vertical-align:middle}
+.rtable tr:last-child td{border-bottom:none}
+.rtable tr:hover td{background:var(--teal-pale)}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;padding:1.75rem 1rem;font-size:.8rem}
+footer img{height:30px;display:block;margin:0 auto .6rem;opacity:.9}
+footer a{color:var(--teal);text-decoration:none}
+
+#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999}
+
+@media(max-width:640px){
+  .step-head,.step-body{padding:1.25rem}
+  .shero{padding:2rem 1.25rem}
+  .wrap,.wrap-sm{padding:2rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo-wrap" href="https://aiedu.org" target="_blank" rel="noopener">
+    <img class="logo" src="https://images.squarespace-cdn.com/content/v1/63ebe79f606efb032dd05a5b/3de9046d-f273-4ffd-b39d-43fb0bf2f93f/AI+Edu+Logo+%282%29.png" alt="aiEDU"/>
+    <span class="logo-text">aiEDU</span>
+  </a>
+  <span class="hbadge">Staff AI Hub</span>
+</header>
+
+<nav class="tab-nav" id="tab-nav">
+  <button class="tab-btn active" data-tab="home">🏠 Home</button>
+  <button class="tab-btn" data-tab="writing">✍️ AI Writing</button>
+  <button class="tab-btn" data-tab="notes">📝 Meeting Notes</button>
+  <button class="tab-btn" data-tab="design">🎨 Design & Slides</button>
+  <button class="tab-btn" data-tab="research">🔍 Research</button>
+  <button class="tab-btn" data-tab="automations">⚡ Automations</button>
+  <button class="tab-btn" data-tab="vibecoding">💻 Vibe Coding</button>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div id="tab-home" class="tab-panel active">
+  <div style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--navy-light) 100%);color:#fff;padding:3rem 2rem 3.5rem">
+    <div style="max-width:900px;margin:0 auto">
+      <div style="font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem">For aiEDU Staff</div>
+      <h1 style="font-family:'Poppins',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:.85rem">AI at aiEDU<br><span style="color:var(--teal)">Work Smarter, Build More</span></h1>
+      <p style="font-size:1rem;opacity:.85;line-height:1.7;max-width:540px">A practical guide to using AI in your day-to-day work — from drafting documents and summarizing research to automating workflows and building apps for program participants.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="quiz-box">
+      <div class="quiz-title">What are you trying to do today?</div>
+      <div class="quiz-sub">Pick the scenario that fits best — we'll point you to the right section.</div>
+      <div class="quiz-grid" id="quiz-grid">
+        <div class="qcard" data-tab="writing" data-title="AI Writing &amp; Documents" data-body="Learn to draft reports, program overviews, grant narratives, and emails in minutes using Claude, ChatGPT, or Gemini.">
+          <span class="qcard-icon">📄</span><span class="qcard-text">I want to draft or polish a document — report, proposal, or email</span>
+        </div>
+        <div class="qcard" data-tab="notes" data-title="Meeting Notes &amp; Follow-ups" data-body="Set up Granola (aiEDU's licensed tool) to auto-capture meetings and turn notes into structured summaries and action items.">
+          <span class="qcard-icon">🎙️</span><span class="qcard-text">I want to catch up on — or get more out of — my meeting notes</span>
+        </div>
+        <div class="qcard" data-tab="design" data-title="Design &amp; Presentations" data-body="Use Canva AI and Gamma to create polished decks and visuals — no design experience needed.">
+          <span class="qcard-icon">🎨</span><span class="qcard-text">I want to create a presentation or visual for a partner or funder</span>
+        </div>
+        <div class="qcard" data-tab="research" data-title="Research &amp; Synthesis" data-body="Use NotebookLM or Claude to summarize long reports, extract key insights, and synthesize multiple sources at once.">
+          <span class="qcard-icon">📚</span><span class="qcard-text">I want to quickly understand a long research paper or report</span>
+        </div>
+        <div class="qcard" data-tab="automations" data-title="Automations &amp; Workflows" data-body="Start with a simple automation — like routing meeting notes to Slack — and build up to powerful multi-step AI workflows.">
+          <span class="qcard-icon">⚡</span><span class="qcard-text">I want to automate a repetitive task or connect two tools together</span>
+        </div>
+        <div class="qcard" data-tab="vibecoding" data-title="Vibe Coding" data-body="Build a real interactive app for staff or program participants — no coding experience needed. Step-by-step guide walks you through everything.">
+          <span class="qcard-icon">💻</span><span class="qcard-text">I want to build an app or interactive tool for staff or participants</span>
+        </div>
+      </div>
+      <div class="quiz-rec" id="quiz-rec">
+        <div class="qrec-inner">
+          <div class="qrec-text"><strong id="qrec-title"></strong><span id="qrec-body"></span></div>
+          <button class="qrec-btn" id="qrec-btn">Go there →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="slabel">Browse all topics</div>
+    <div class="stitle" style="margin-bottom:1rem">Where do you want to start?</div>
+    <div class="ov-grid">
+      <div class="ovcard ov-w" onclick="switchTab('writing')"><span>✍️</span><h3>AI Writing & Documents</h3><p>Draft reports, emails, grant narratives, and program overviews in minutes</p></div>
+      <div class="ovcard ov-n" onclick="switchTab('notes')"><span>📝</span><h3>Meeting Notes</h3><p>Auto-capture meetings with Granola and turn notes into structured action items</p></div>
+      <div class="ovcard ov-d" onclick="switchTab('design')"><span>🎨</span><h3>Design & Presentations</h3><p>Create polished decks and visuals with Canva AI and Gamma</p></div>
+      <div class="ovcard ov-r" onclick="switchTab('research')"><span>🔍</span><h3>Research & Synthesis</h3><p>Summarize research, extract insights, and build a knowledge base with AI</p></div>
+      <div class="ovcard ov-a" onclick="switchTab('automations')"><span>⚡</span><h3>Automations & Workflows</h3><p>Automate repetitive tasks and build powerful multi-step AI workflows</p></div>
+      <div class="ovcard ov-v" onclick="switchTab('vibecoding')"><span>💻</span><h3>Vibe Coding</h3><p>Build real apps and tools by describing what you want in plain English</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ WRITING ═══════════════ -->
+<div id="tab-writing" class="tab-panel">
+  <div class="shero write"><div class="shero-inner">
+    <span class="sicon">✍️</span>
+    <h1>AI Writing & Documents</h1>
+    <p>Use AI to draft, polish, and transform text — reports, proposals, emails, program overviews. Describe what you need in plain language and iterate from there.</p>
+  </div></div>
+  <div class="wrap write">
+    <div class="slabel">The tools</div>
+    <div class="stitle">Choose your writing assistant</div>
+    <div class="ssub">All of these understand plain English instructions. Different models have different strengths — try a few and see what works for you.</div>
+    <div class="tool-grid">
+      <div class="tcard"><div class="tcard-name">Claude</div><span class="tcard-tag">anthropic.com</span><div class="tcard-desc">Excellent at following nuanced instructions, maintaining a consistent voice, and working through complex multi-part documents. Strong for grant writing and program narratives.</div><div class="tcard-tip">Try: "Write this in a warm but professional tone for a foundation audience."</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#3b82f6">claude.ai →</a></div>
+      <div class="tcard"><div class="tcard-name">ChatGPT</div><span class="tcard-tag">openai.com</span><div class="tcard-desc">The most widely used AI writing tool. Canvas workspace lets you edit and refine text side-by-side. Great for drafts, rewrites, and brainstorming document structures.</div><div class="tcard-tip">Try: "Give me three different opening paragraphs for this report."</div><a href="https://chatgpt.com" target="_blank" rel="noopener" style="color:#3b82f6">chatgpt.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Gemini</div><span class="tcard-tag">google.com</span><div class="tcard-desc">Best if you live in Google Workspace. Can read and write directly to Google Docs, pull context from your Drive, and help you edit documents without copy-pasting.</div><div class="tcard-tip">Try opening Gemini directly inside Google Docs via the "Help me write" button.</div><a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:#3b82f6">gemini.google.com →</a></div>
+    </div>
+
+    <div class="callout blue"><strong>💡 The key habit: start rough, refine fast</strong><p>You don't need to craft a perfect prompt. Paste your rough notes and say "Turn this into a polished program overview" — then give feedback on the draft. "Make the tone warmer." "Add a section on outcomes." "Cut this down to one page." That back-and-forth is faster than writing from scratch.</p></div>
+
+    <div class="pblock" style="margin-top:1.75rem">
+      <div class="pblock-label">💬 Example prompts for aiEDU work</div>
+      <div class="pitem">"Here are my rough notes. Turn them into a one-page program overview for school district partners."</div>
+      <div class="pitem">"Draft a 2-paragraph executive summary of this report for a funder audience. Keep it under 200 words."</div>
+      <div class="pitem">"Rewrite this email so it's warmer and gets to the ask in the first sentence."</div>
+      <div class="pitem">"Write a logic model narrative for a program that [describe program]. Include inputs, activities, outputs, and outcomes."</div>
+      <div class="pitem">"Here is last year's grant report. Help me write this year's based on the same structure but with updated outcomes."</div>
+    </div>
+
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Get better results</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🎯</span><span class="acc-title">Give context about your audience</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">The same content needs different framing for a funder vs. a district partner vs. internal staff. Always tell the AI who will read it: "This is for a foundation that prioritizes equity" or "This is an internal brief for the program team."</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📋</span><span class="acc-title">Paste your existing content — AI works with what you give it</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">You don't need to describe everything from scratch. Paste your rough notes, a previous report, bullet points from a meeting — then ask the AI to transform it. "Clean up these notes into a structured summary" or "Turn these bullets into flowing paragraphs."</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🔄</span><span class="acc-title">Ask for multiple versions</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">If the first draft isn't right, don't rewrite it yourself — ask for variations. "Give me three versions of this opener with different tones." "Write this as a shorter version and a longer version." Pick the best parts and ask the AI to combine them.</div></div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ NOTES ═══════════════ -->
+<div id="tab-notes" class="tab-panel">
+  <div class="shero notes"><div class="shero-inner">
+    <span class="sicon">📝</span>
+    <h1>Meeting Notes & Follow-ups</h1>
+    <p>Let AI capture and organize your meetings automatically — so you can be present instead of typing. aiEDU has a team license for Granola.</p>
+  </div></div>
+  <div class="wrap notes">
+    <div class="callout teal" style="margin-bottom:1.75rem"><strong>✅ aiEDU has a team license for Granola</strong><p>You don't need to sign up or pay — ask Rachel or your manager for access. Granola runs quietly in the background during any meeting (Zoom, Google Meet, Teams, in-person) and generates structured notes automatically.</p></div>
+
+    <div class="slabel">The tools</div>
+    <div class="stitle">Meeting note tools</div>
+    <div class="ssub">Granola is the primary tool for the team. Others are listed as alternatives if Granola doesn't fit a specific use case.</div>
+    <div class="tool-grid">
+      <div class="tcard"><div class="tcard-name">Granola ⭐</div><span class="tcard-tag">Team licensed</span><div class="tcard-desc">Runs silently in the background on your Mac. Captures system audio from any meeting without a bot joining the call. Generates structured notes with action items. You can add your own shorthand during the meeting and Granola weaves it in.</div><div class="tcard-tip">Download the Mac app at granola.so and sign in with your aiEDU Google account.</div><a href="https://granola.so" target="_blank" rel="noopener" style="color:#8b5cf6">granola.so →</a></div>
+      <div class="tcard"><div class="tcard-name">Otter.ai</div><span class="tcard-tag">Alternative</span><div class="tcard-desc">Joins your calls as a bot participant and transcribes in real time. Good for Zoom and Google Meet. Free tier includes 300 minutes/month of transcription. Useful if you're on Windows or need real-time transcript sharing with others.</div><div class="tcard-tip">Best for meetings where you want to share the live transcript link with attendees.</div><a href="https://otter.ai" target="_blank" rel="noopener" style="color:#8b5cf6">otter.ai →</a></div>
+      <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">Manual option</span><div class="tcard-desc">If you have rough notes or a transcript already, paste them into Claude or ChatGPT and ask it to clean them up. Great for converting messy bullet points into a structured summary you can send to the team.</div><div class="tcard-tip">Works with any notes — even voice memo transcripts from your phone.</div></div>
+    </div>
+
+    <div class="pblock">
+      <div class="pblock-label">💬 What to ask after a meeting</div>
+      <div class="pitem">"Summarize this meeting transcript into: key decisions, action items with owners, and open questions."</div>
+      <div class="pitem">"Write a follow-up email to all attendees based on these notes. Include a summary and next steps."</div>
+      <div class="pitem">"Pull out every action item from these notes and format as a table: task, owner, due date."</div>
+      <div class="pitem">"What topics came up repeatedly across these three meeting notes?" [paste multiple transcripts]</div>
+    </div>
+
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Make the most of AI meeting notes</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🎙️</span><span class="acc-title">Set up Granola before your first meeting</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Download the Mac app, sign in with your aiEDU Google account, and give it microphone + system audio permissions. It will then capture all your meetings automatically — no setup per-meeting needed. Test it on a short internal call first.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">✏️</span><span class="acc-title">Add shorthand during the meeting</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Granola lets you type quick notes while it's recording. You don't need full sentences — just type "follow up w/ Maria on budget" or "!! Rachel to share draft by Friday." Granola weaves your shorthand into the final structured notes intelligently.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📤</span><span class="acc-title">Use AI to create follow-up artifacts</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Don't just read the auto-generated notes — use them as input for follow-up work. Paste the notes into Claude and ask it to: write the follow-up email, draft a project brief based on what was discussed, or create a one-pager summarizing the decisions made.</div></div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ DESIGN ═══════════════ -->
+<div id="tab-design" class="tab-panel">
+  <div class="shero design"><div class="shero-inner">
+    <span class="sicon">🎨</span>
+    <h1>Design & Presentations</h1>
+    <p>Create polished decks, graphics, and visual content faster than ever — AI handles the layout, imagery, and structure while you focus on the message.</p>
+  </div></div>
+  <div class="wrap design">
+    <div class="slabel">The tools</div>
+    <div class="stitle">Design & presentation tools</div>
+    <div class="ssub">Canva AI is the most accessible entry point if your team already uses Canva. Gamma is worth trying if you want an AI-first deck-building experience.</div>
+    <div class="tool-grid">
+      <div class="tcard"><div class="tcard-name">Canva AI</div><span class="tcard-tag">canva.com</span><div class="tcard-desc">Canva's built-in AI features let you generate images, write slide copy, resize designs for any format, and create full presentations from a text prompt. Works within the Canva interface you may already know.</div><div class="tcard-tip">Try "Magic Design" — paste your content and Canva generates a full branded deck in seconds.</div><a href="https://canva.com" target="_blank" rel="noopener" style="color:#ec4899">canva.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Gamma</div><span class="tcard-tag">gamma.app</span><div class="tcard-desc">An AI-first presentation tool. Type a topic or paste your outline and Gamma generates a complete, visually polished deck. Each slide is editable, and you can ask Gamma to rewrite or redesign any section in plain English.</div><div class="tcard-tip">Great for quickly generating a first draft of a deck that you then refine — much faster than building from a blank template.</div><a href="https://gamma.app" target="_blank" rel="noopener" style="color:#ec4899">gamma.app →</a></div>
+      <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">For slide content</span><div class="tcard-desc">Before you open a design tool, use an AI assistant to plan your narrative. Ask it to outline a 10-slide deck, write the key message for each slide, or draft speaker notes. Then drop the content into Canva or Gamma.</div><div class="tcard-tip">"Create a 10-slide outline for a funder presentation about our AI literacy program. Each slide should have a headline and 3 bullets."</div></div>
+    </div>
+
+    <div class="pblock">
+      <div class="pblock-label">💬 Example prompts</div>
+      <div class="pitem">"Create a 12-slide presentation deck outline for a school district partner about our professional learning offerings."</div>
+      <div class="pitem">"Generate a hero image for a slide about AI literacy for educators. Style: clean, professional, optimistic."</div>
+      <div class="pitem">"Rewrite these slide bullets so each one is a single punchy sentence, not a fragment."</div>
+      <div class="pitem">"Take this wall of text and turn it into 4 slides with clear headings and supporting bullets."</div>
+    </div>
+
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Work faster with AI design tools</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📝</span><span class="acc-title">Write the narrative first, design second</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">The best presentations start with a clear story, not a beautiful template. Use Claude or ChatGPT to outline your narrative and key messages before you open any design tool. "What's the one thing I want the audience to remember from this presentation?" is a great prompt to start with.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🖼️</span><span class="acc-title">Use Canva AI to generate on-brand visuals</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Instead of searching stock photo sites, use Canva's AI image generator to create visuals that match your exact concept. Be specific: "An illustration of a teacher and student looking at a tablet together, warm colors, flat design style."</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">♻️</span><span class="acc-title">Repurpose a deck into other formats</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Once you have a deck, paste the content into Claude and ask it to turn it into: a one-page leave-behind, a 3-paragraph email summary, social media posts, or a talking points sheet for a phone call.</div></div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ RESEARCH ═══════════════ -->
+<div id="tab-research" class="tab-panel">
+  <div class="shero research"><div class="shero-inner">
+    <span class="sicon">🔍</span>
+    <h1>Research & Synthesis</h1>
+    <p>Upload documents, paste reports, or point AI at a topic — and get instant summaries, comparisons, and insights without reading every page.</p>
+  </div></div>
+  <div class="wrap research">
+    <div class="slabel">The tools</div>
+    <div class="stitle">Research & synthesis tools</div>
+    <div class="ssub">These tools let you work with large amounts of text quickly — summarizing, comparing, and extracting what matters.</div>
+    <div class="tool-grid">
+      <div class="tcard"><div class="tcard-name">NotebookLM</div><span class="tcard-tag">Google — free</span><div class="tcard-desc">Upload PDFs, Google Docs, websites, or YouTube videos. NotebookLM builds a private knowledge base from your sources and lets you ask questions, generate summaries, and create an AI-powered "podcast" overview. Nothing leaves your notebook.</div><div class="tcard-tip">Best for: synthesizing 5–10 research papers or reports at once, with citations to sources.</div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:#b45309">notebooklm.google.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">Upload documents</span><div class="tcard-desc">Both let you upload PDFs or paste long text directly into the chat. Ask any question about the document or ask for a structured summary. Claude is particularly good at nuanced analysis and following specific formatting instructions.</div><div class="tcard-tip">You can upload multiple documents and ask "What do these reports agree on?" or "What's missing from this analysis?"</div></div>
+      <div class="tcard"><div class="tcard-name">Perplexity</div><span class="tcard-tag">perplexity.ai</span><div class="tcard-desc">An AI search engine that answers questions with cited sources from the web. Great for quickly getting a landscape view of a topic, checking recent developments, or finding relevant research with links to original sources.</div><div class="tcard-tip">Unlike ChatGPT, Perplexity searches the web in real time and shows you its sources — useful when you need verifiable, up-to-date information.</div><a href="https://perplexity.ai" target="_blank" rel="noopener" style="color:#b45309">perplexity.ai →</a></div>
+    </div>
+
+    <div class="pblock">
+      <div class="pblock-label">💬 Example prompts</div>
+      <div class="pitem">"Summarize this report in 3 bullet points. Then give me 5 key findings most relevant to K-12 AI education."</div>
+      <div class="pitem">"I've uploaded 4 research papers. What do they agree on? Where do they disagree?"</div>
+      <div class="pitem">"What are the most important themes across these stakeholder interview transcripts?"</div>
+      <div class="pitem">"What does recent research say about effective professional development models for AI literacy? Cite sources."</div>
+    </div>
+
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Get more from research tools</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📎</span><span class="acc-title">Upload the actual document, don't describe it</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Don't try to summarize a report yourself and then ask AI to help — just upload the PDF. Claude and NotebookLM can process hundreds of pages instantly. The more raw material you give them, the better the output.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🎯</span><span class="acc-title">Ask for the specific format you need</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Don't just ask "summarize this." Specify: "Give me a 1-page executive summary," "Create a table of key findings," "Write 3 paragraphs I can include in a grant proposal," or "List the top 5 takeaways as bullet points with a sentence of context each."</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🔗</span><span class="acc-title">Use NotebookLM for ongoing research projects</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Create a notebook for each major research area (e.g., "AI PD effectiveness research," "State AI policy landscape"). Add sources as you find them. Over time it becomes a searchable knowledge base you can query anytime — and share with colleagues.</div></div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ AUTOMATIONS ═══════════════ -->
+<div id="tab-automations" class="tab-panel">
+  <div class="shero auto"><div class="shero-inner">
+    <span class="sicon">⚡</span>
+    <h1>Automations & Workflows</h1>
+    <p>Connect your tools and automate repetitive tasks — from routing meeting summaries to Slack, to building AI pipelines that draft content automatically.</p>
+  </div></div>
+  <div class="wrap auto">
+    <div class="slabel">The tools</div>
+    <div class="stitle">Automation platforms</div>
+    <div class="ssub">These platforms let you connect apps and build multi-step workflows — no code required for the basics. AI can be added at any step in the pipeline.</div>
+    <div class="tool-grid">
+      <div class="tcard"><div class="tcard-name">Make</div><span class="tcard-tag">make.com</span><div class="tcard-desc">A visual workflow builder where you connect apps with drag-and-drop. Each "scenario" runs automatically when triggered. Make has deep Claude/OpenAI integration — you can add an AI step anywhere in a workflow to generate, classify, or transform content.</div><div class="tcard-tip">Good first automation: new Granola meeting note → Claude summarizes → posts to Slack channel.</div><a href="https://make.com" target="_blank" rel="noopener" style="color:#f97316">make.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Zapier</div><span class="tcard-tag">zapier.com</span><div class="tcard-desc">The most widely used automation tool, with 6,000+ app integrations. Simpler and more guided than Make. Good for straightforward trigger → action flows. Zapier also has a built-in AI step that uses ChatGPT to generate or transform text.</div><div class="tcard-tip">Easier to start with than Make. Great for simple two-step automations like form submission → draft email.</div><a href="https://zapier.com" target="_blank" rel="noopener" style="color:#f97316">zapier.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Claude Projects</div><span class="tcard-tag">Built-in context</span><div class="tcard-desc">Claude's Projects feature lets you create a persistent AI assistant with custom instructions and uploaded documents. Not a full automation platform, but great for creating specialized assistants — like a grant-writing helper that always knows your org's context and voice.</div><div class="tcard-tip">"You are an expert grant writer for aiEDU, an education nonprofit focused on AI literacy. Here is our mission, theory of change, and recent program data..."</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#f97316">claude.ai →</a></div>
+    </div>
+
+    <div class="callout yellow"><strong>⚡ Where to start: one simple automation</strong><p>Pick one task you do manually at least weekly and automate just that. Good candidates: copy Granola notes to a shared doc, get a Slack message when a new form is submitted, auto-draft a follow-up email template when a meeting ends. Start small, learn the platform, then build up.</p></div>
+
+    <div class="pblock">
+      <div class="pblock-label">💬 Automation ideas for aiEDU work</div>
+      <div class="pitem">New meeting note in Granola → AI summarizes → posts digest to #team-updates Slack channel</div>
+      <div class="pitem">Google Form submission → AI generates a personalized response draft → sends to your inbox for review</div>
+      <div class="pitem">New research paper added to a shared Google Drive folder → NotebookLM summary → posted to team doc</div>
+      <div class="pitem">Calendar event ends → AI drafts follow-up email → saves to Drafts for you to review and send</div>
+    </div>
+
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Build automations that actually stick</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🗺️</span><span class="acc-title">Map the manual process before you automate it</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Before opening Make or Zapier, write out every step you do manually. "I get a form submission → I copy it to a spreadsheet → I draft an email response → I send it." Automation platforms mirror this structure — each step becomes a module in your workflow.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🤖</span><span class="acc-title">Use Claude to help you build the automation</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Describe what you want to automate to Claude and ask it to outline the workflow steps, suggest which apps to connect, and write any AI prompt that should be part of the automation. "I want to automatically summarize new emails from grant contacts and post them to Slack. What would the Make scenario look like?"</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">✅</span><span class="acc-title">Keep humans in the loop for anything public-facing</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Until you fully trust an automation, build in a human review step — auto-generate the draft, but don't auto-send it. Have Make post a draft to a Google Doc or save it to Gmail Drafts so you can review before it goes out. Remove the human step once you've confirmed the quality is reliable.</div></div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ VIBE CODING ═══════════════ -->
+<div id="tab-vibecoding" class="tab-panel">
+  <div class="shero vibe"><div class="shero-inner">
+    <span class="sicon">💻</span>
+    <h1>Vibe Coding</h1>
+    <p>Build real websites, apps, and interactive tools by describing what you want in plain English. No programming background required.</p>
+  </div></div>
+
+  <div class="wrap vibe">
+    <div class="slabel">The big idea</div>
+    <div style="background:var(--teal-pale);border:2px solid rgba(24,220,220,.25);border-radius:var(--radius);padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:2rem">
+      <div style="font-size:2.4rem;line-height:1;flex-shrink:0">🤔</div>
+      <div>
+        <div style="font-size:1rem;font-weight:800;margin-bottom:.45rem;color:var(--teal-dark)">What is vibe coding?</div>
+        <p style="font-size:.92rem;color:var(--gray-600);line-height:1.7">Vibe coding is a way of building software where you describe what you want in plain English and an AI writes the code. You don't need to know programming languages or syntax — just explain what you're building.</p>
+        <p style="font-size:.92rem;color:var(--gray-600);line-height:1.7;margin-top:.5rem">Think of it like directing a world-class developer: you describe the vision, the AI handles the technical work. This guide is tool-agnostic — the concepts apply regardless of which AI or editor you choose.</p>
+      </div>
+    </div>
+
+    <div class="slabel">Pick your tool</div>
+    <div class="stitle">Which vibe coding tool is right for you?</div>
+    <div class="ssub">Tools fall into three tiers based on how much control and technical comfort they require. Start at the level that fits you — you can always move up.</div>
+
+    <div class="diff-badge diff-b">🟢 Beginner — Chat-to-code</div>
+    <div class="picker-grid">
+      <div class="pcard vibe"><h4>Claude</h4><div class="pc-cat">chat-to-code · anthropic.com</div><div class="pc-desc">Creates interactive web apps (called Artifacts) right in the chat — preview live, share by link, or copy the code. Excellent at understanding complex instructions.</div><ul class="pros"><li>Live preview of apps in chat</li><li>Free tier includes Artifacts</li><li>Best at nuanced instructions</li></ul><ul class="cons"><li>Single-file only — no backend</li></ul></div>
+      <div class="pcard vibe"><h4>ChatGPT</h4><div class="pc-cat">chat-to-code · openai.com</div><div class="pc-desc">Canvas workspace lets you write and preview code side by side. Massive community with tutorials for every use case.</div><ul class="pros"><li>Intuitive Canvas interface</li><li>Huge community + examples</li><li>Generates text, code, images</li></ul><ul class="cons"><li>Free tier has model limits</li><li>Single-file, no backend</li></ul></div>
+      <div class="pcard vibe"><h4>Gemini</h4><div class="pc-cat">chat-to-code · google.com</div><div class="pc-desc">Google's AI with Canvas for live code preview. Tight Google Workspace integration — free with a Google account.</div><ul class="pros"><li>Free with Google account</li><li>Live preview in Canvas</li><li>Exports to Docs, Sheets, Colab</li></ul><ul class="cons"><li>Full Canvas needs Gemini Advanced</li><li>Single-file frontend only</li></ul></div>
+    </div>
+
+    <div class="diff-badge diff-i">🟡 Intermediate — App builders</div>
+    <div class="picker-grid">
+      <div class="pcard vibe"><h4>Lovable</h4><div class="pc-cat">app-builder · lovable.dev</div><div class="pc-desc">Creates polished, functional web apps from plain English. No coding needed. Built-in hosting — your app goes live instantly.</div><ul class="pros"><li>Polished results quickly</li><li>No coding required</li><li>Instant deploy + hosting</li></ul><ul class="cons"><li>Free tier: ~5 credits/day</li><li>Less control over code details</li></ul></div>
+      <div class="pcard vibe"><h4>Bolt.new</h4><div class="pc-cat">app-builder · bolt.new</div><div class="pc-desc">StackBlitz's browser-based full-stack app builder. Very fast iteration from idea to working app.</div><ul class="pros"><li>Fast — browser-based, no install</li><li>Full-stack (frontend + backend)</li><li>Free: 300K tokens/day</li></ul><ul class="cons"><li>Monthly token limit on free tier</li></ul></div>
+      <div class="pcard vibe"><h4>Replit</h4><div class="pc-cat">app-builder · replit.com</div><div class="pc-desc">Online coding environment with AI assistant. Works in your browser. Bridges app builders and coding agents — good for learning.</div><ul class="pros"><li>No install — runs in browser</li><li>AI explains code as you build</li><li>Easy deploy + sharing</li></ul><ul class="cons"><li>Free tier has compute limits</li></ul></div>
+      <div class="pcard vibe"><h4>Gamma / v0</h4><div class="pc-cat">specialized builders</div><div class="pc-desc">Gamma for presentations and documents. v0 (by Vercel) for React UI components — generates clean, deployable code.</div><ul class="pros"><li>Gamma: best for decks + docs</li><li>v0: production-quality React code</li></ul><ul class="cons"><li>Each tool is purpose-specific</li></ul></div>
+    </div>
+
+    <div class="diff-badge diff-a">🔴 Advanced — Coding agents</div>
+    <div class="picker-grid">
+      <div class="pcard vibe"><h4>Claude Code</h4><div class="pc-cat">coding-agent · anthropic.com</div><div class="pc-desc">Reads your entire codebase, plans an approach, writes across multiple files, runs tests, and fixes issues — all autonomously. Runs in your terminal or VS Code.</div><ul class="pros"><li>Full codebase context</li><li>Handles complex multi-file projects</li><li>Autonomous testing + debugging</li></ul><ul class="cons"><li>Requires terminal comfort</li><li>Needs a dev environment set up</li></ul></div>
+      <div class="pcard vibe"><h4>Codex</h4><div class="pc-cat">coding-agent · openai.com</div><div class="pc-desc">OpenAI's coding agent — writes, tests, and debugs code autonomously in a cloud sandbox. Requires ChatGPT Plus.</div><ul class="pros"><li>Fully autonomous in cloud</li><li>Good with existing codebases</li></ul><ul class="cons"><li>Requires ChatGPT Plus ($20/mo)</li></ul></div>
+      <div class="pcard vibe"><h4>GitHub Copilot</h4><div class="pc-cat">coding-agent · github.com</div><div class="pc-desc">The most widely adopted AI coding tool globally. Works inside VS Code, JetBrains, and others. Suggests code as you type and has an autonomous agent mode.</div><ul class="pros"><li>Free tier: 2,000 completions/mo</li><li>Works in editors you know</li><li>Supports all languages</li></ul><ul class="cons"><li>Requires familiarity with an IDE</li></ul></div>
+    </div>
+
+    <div class="callout teal"><strong>💡 Not sure where to start?</strong><p>If you're brand new, try Claude.ai or ChatGPT — describe what you want to build and ask it to create an interactive app. You'll get a working prototype in minutes with zero setup. Once you want more control or a real deployed site, move to Bolt.new or Lovable. Claude Code and Codex are for when you're ready to work with a full codebase.</p></div>
+  </div>
+
+  <!-- Step-by-step guide -->
+  <div class="wrap" style="padding-top:0">
+    <div class="slabel">Step by step</div>
+    <div class="stitle">Getting Started: Deploying Your First App</div>
+    <p class="ssub">This guide walks you from first prompt to a live URL. Complete it once — you only need to set most of this up one time.</p>
+  </div>
+  <div class="wrap-sm" style="padding-top:0" id="steps-section">
+    <div class="dot-track" id="dot-track"></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+    <div class="prog-label" id="prog-label">0 tasks complete</div>
+    <div class="step-card" id="step-card"></div>
+    <div class="step-nav">
+      <button class="nbtn prev" id="prev-btn" onclick="changeStep(-1)" disabled>← Back</button>
+      <span class="step-count" id="step-count">Step 1 of 7</span>
+      <button class="nbtn next" id="next-btn" onclick="changeStep(1)">Next →</button>
+    </div>
+    <div class="done-banner" id="done-banner">
+      <h2>🎉 You're live on the internet!</h2>
+      <p>You just built a professional vibe coding workflow from scratch. Your site has a real URL. Keep building — you've got this.</p>
+    </div>
+  </div>
+
+  <div class="wrap vibe" style="padding-top:0">
+    <div class="slabel">Pro tips</div>
+    <div class="stitle" style="margin-bottom:1rem">Get the most out of vibe coding</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🎯</span><span class="acc-title">Be specific with your first prompt</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">The more detail you give, the better the result. Instead of "make a website," describe every part:<ul><li>"Build a one-page site with a dark background, my name in large white text at the top, a grid of 3 program cards, and a contact section at the bottom."</li></ul></div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🔁</span><span class="acc-title">Iterate out loud</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">You don't have to get it perfect in one shot. Build a rough version first, then refine:<ul><li>"Now change the font to something more modern"</li><li>"Make the nav stick to the top when scrolling"</li><li>"The button color is off — try a softer blue"</li></ul></div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">😤</span><span class="acc-title">Don't panic when things break</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Errors are normal — even for experienced developers. Copy the error message and paste it to your AI assistant:<ul><li>"I got this error — what went wrong and how do I fix it?"</li></ul></div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">💾</span><span class="acc-title">Save to version control often</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Every time things are working, commit and push to GitHub. If you break something while experimenting, you can always roll back to the version that worked.</div></div></div>
+    </div>
+
+    <div class="slabel" style="margin-top:2rem">Bookmark this</div>
+    <div class="stitle">Quick Reference</div>
+    <table class="rtable">
+      <thead><tr><th>Category</th><th>Popular Examples</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>🤖 AI Coding Assistant</strong></td><td>Claude Code, GitHub Copilot, ChatGPT/Codex, Gemini</td><td>Understands plain English and writes code for you</td></tr>
+        <tr><td><strong>💻 Code Editor</strong></td><td>VS Code, Cursor, Windsurf, Conductor, Replit</td><td>Your workspace — manage files, write code, chat with your AI</td></tr>
+        <tr><td><strong>🐙 Version Control</strong></td><td>GitHub, GitLab, Bitbucket</td><td>Back up your code with complete version history</td></tr>
+        <tr><td><strong>▲ Deployment Platform</strong></td><td>Vercel, Netlify, Railway, GitHub Pages</td><td>Publish your project live on the internet</td></tr>
+        <tr><td><strong>🗄️ Database & Backend</strong></td><td>Supabase, Firebase, Neon, PlanetScale</td><td>Store and retrieve data from your app</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <img src="https://images.squarespace-cdn.com/content/v1/63ebe79f606efb032dd05a5b/a155a944-afed-403b-a8f0-ee8c40c9699a/aiEDU_Logo_Full_White.png" alt="aiEDU"/>
+  &copy; 2026 aiEDU &nbsp;|&nbsp; <a href="https://www.aiedu.org" target="_blank" rel="noopener">aiedu.org</a> &nbsp;|&nbsp; Questions? Email <a href="mailto:rachel@aiedu.org">rachel@aiedu.org</a>
+</footer>
+<canvas id="confetti-canvas"></canvas>
+
+<script>
+/* ── TAB SWITCHING ── */
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelector('[data-tab="' + id + '"]').classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+
+/* ── QUIZ ── */
+let quizTarget = null;
+document.querySelectorAll('.qcard').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.qcard').forEach(c => c.classList.remove('sel'));
+    card.classList.add('sel');
+    quizTarget = card.dataset.tab;
+    document.getElementById('qrec-title').textContent = card.dataset.title;
+    document.getElementById('qrec-body').textContent = card.dataset.body;
+    const rec = document.getElementById('quiz-rec');
+    rec.classList.add('show');
+  });
+});
+document.getElementById('qrec-btn').addEventListener('click', () => {
+  if (quizTarget) switchTab(quizTarget);
+});
+
+/* ── ACCORDION ── */
+function toggleAcc(btn) {
+  const item = btn.closest('.acc-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ── VIBE CODING STEPS ── */
+const STEPS = [
+  {
+    num:1, emoji:'🔐', title:'Create Your Accounts',
+    intro:'Sign up for the free tier of the platforms you plan to use. Takes about 10–15 minutes total — and you only do this once.',
+    tasks:[
+      {id:'s1a', html:'Choose an <strong>AI coding assistant</strong> and create an account — popular options: <a href="https://claude.ai" target="_blank" style="color:var(--teal-dark);font-weight:600">Claude</a>, <a href="https://chatgpt.com" target="_blank" style="color:var(--teal-dark);font-weight:600">ChatGPT</a>, <a href="https://gemini.google.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Gemini</a> (not exhaustive — try a few!)'},
+      {id:'s1b', html:'Sign up for a <strong>version control platform</strong> — <a href="https://github.com" target="_blank" style="color:var(--teal-dark);font-weight:600">GitHub</a> is the most widely used, but GitLab and Bitbucket work too'},
+      {id:'s1c', html:'Sign up for a <strong>deployment platform</strong> — <a href="https://vercel.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Vercel</a> or <a href="https://netlify.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Netlify</a> are popular beginner-friendly choices (both free)'},
+    ],
+    callout:{type:'yellow', icon:'💡', title:'Pro tip', body:'Use the same email across accounts. Many deployment platforms let you sign in with your GitHub account — saves time.'},
+  },
+  {
+    num:2, emoji:'💻', title:'Set Up Your Coding Environment',
+    intro:"Your coding environment is where you'll spend most of your time. Combine a code editor with an AI assistant — there are many valid combinations.",
+    tasks:[
+      {id:'s2a', html:'<strong>Option A — Separate tools:</strong> Download <a href="https://code.visualstudio.com" target="_blank" style="color:var(--teal-dark);font-weight:600">VS Code</a> (free), then add your AI assistant as an extension from the Extensions panel'},
+      {id:'s2b', html:'<strong>Option B — AI-first editor:</strong> Use <a href="https://cursor.sh" target="_blank" style="color:var(--teal-dark);font-weight:600">Cursor</a>, <a href="https://windsurf.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Windsurf</a>, or <a href="https://conductor.build" target="_blank" style="color:var(--teal-dark);font-weight:600">Conductor</a> — AI is built right in, no plugin needed'},
+      {id:'s2c', html:'<strong>Option C — Browser-based:</strong> Use <a href="https://replit.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Replit</a> — no install, runs in your browser with AI included'},
+      {id:'s2d', html:'Open your chosen editor and sign in to your AI assistant when prompted'},
+      {id:'s2e', html:'Explore the layout: project files in the sidebar, code in the center, AI chat panel nearby'},
+    ],
+    callout:{type:'pink', icon:'✨', title:'Good to know', body:'All options are free to start. VS Code + Claude Code or Cursor are popular beginner-friendly combos — but there\'s no wrong answer. You can always switch later.'},
+  },
+  {
+    num:3, emoji:'🏗️', title:'Create Your Project & Start Building',
+    intro:"Time to create your first project folder and tell your AI what to build. This is where the magic starts.",
+    tasks:[
+      {id:'s3a', html:'Create a new folder on your computer (Desktop or Documents). Name it something like <strong>my-first-project</strong>'},
+      {id:'s3b', html:'In your code editor, open that folder — usually <strong>File → Open Folder</strong>'},
+      {id:'s3c', html:'Open your AI chat panel'},
+      {id:'s3d', html:'Type your first prompt — describe what you want to build in plain English!'},
+    ],
+    prompts:[
+      '"Build me a simple personal website with my name, a short bio, and links to my social media"',
+      '"Create a landing page for our AI literacy program with a description and a sign-up form"',
+      '"Make a to-do list app where I can add, check off, and delete tasks"',
+    ],
+    callout:{type:'green', icon:'✅', title:'Remember', body:"Be specific, but don't worry about technical terms. Your AI understands plain English — no jargon needed. It will ask clarifying questions, write the code, and create files in your folder."},
+  },
+  {
+    num:4, emoji:'🗄️', title:'Add a Database (Optional)',
+    intro:"If your project needs to store data — user submissions, saved content, participant responses — you'll want a backend database service. Your AI handles all the setup.",
+    tasks:[
+      {id:'s4a', html:'Choose a <strong>database service</strong> — <a href="https://supabase.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Supabase</a>, <a href="https://firebase.google.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Firebase</a>, or <a href="https://neon.tech" target="_blank" style="color:var(--teal-dark);font-weight:600">Neon</a> are free options for beginners'},
+      {id:'s4b', html:'Sign up and create a new project in your chosen service'},
+      {id:'s4c', html:'Find your API credentials — usually a Project URL and a public key (check Settings or the API section)'},
+      {id:'s4d', html:'Tell your AI: <em>"Connect my app to [service]. My project URL is [X] and my anon key is [Y]"</em> — it installs the SDK and wires everything up'},
+      {id:'s4e', html:'Ask AI to set up your data: <em>"Create a table to store [your data] and update the app to save and load from it"</em>'},
+    ],
+    callout:{type:'yellow', icon:'🔐', title:'Keep your keys private', body:'Never paste database credentials into code files or a public repo. Ask your AI: "How do I store my credentials safely?" and it will set up a secure .env file.'},
+  },
+  {
+    num:5, emoji:'👀', title:'Preview Your Work',
+    intro:"See how your project actually looks in a browser as you build it. Most coding environments make this easy.",
+    tasks:[
+      {id:'s5a', html:'Ask your AI: <strong>"How do I preview this project in my browser?"</strong> — it will walk you through the exact steps for your setup'},
+      {id:'s5b', html:'In VS Code, install the <strong>Live Preview</strong> extension for an instant in-editor preview'},
+      {id:'s5c', html:'In browser-based editors like Replit, a preview panel is usually built right in'},
+      {id:'s5d', html:'Describe changes in plain English as you review — your AI updates the code immediately'},
+    ],
+    callout:{type:'yellow', icon:'💬', title:'Stay in the chat as you review', body:'"The header is too big" — "Move the button to the center" — "Make the background a soft gray." Your AI updates code immediately as you describe what you see.'},
+  },
+  {
+    num:6, emoji:'🐙', title:'Save to Version Control',
+    intro:"Back up your project online and keep a complete history of every change. If you ever break something, you can always roll back.",
+    tasks:[
+      {id:'s6a', html:'Find the <strong>Source Control</strong> icon in your editor\'s sidebar — or ask your AI: <em>"Commit and push my changes"</em> and it will handle everything'},
+      {id:'s6b', html:'Stage your changes — click the <strong>+</strong> button next to changed files'},
+      {id:'s6c', html:'Write a short commit message like <em>"First commit"</em> or <em>"Add contact form"</em>'},
+      {id:'s6d', html:'Click <strong>Commit</strong> to save the snapshot locally, then <strong>Push</strong> to send it to the cloud'},
+      {id:'s6e', html:'Choose a repo name and set it as <strong>Public</strong> or <strong>Private</strong>'},
+    ],
+    callout:{type:'pink', icon:'💾', title:'New vocab: commit & push', body:'<strong>Commit</strong>: A named snapshot of your changes — like a video game save point. <strong>Push</strong>: Sending that snapshot to the cloud. Your AI assistant can do both steps for you if you ask.'},
+  },
+  {
+    num:7, emoji:'🚀', title:'Go Live',
+    intro:"Your project gets a real URL and goes live on the internet. Deployment platforms watch your repo and auto-publish whenever you push new code.",
+    tasks:[
+      {id:'s7a', html:'Go to your deployment platform (<a href="https://vercel.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Vercel</a>, <a href="https://netlify.com" target="_blank" style="color:var(--teal-dark);font-weight:600">Netlify</a>, <a href="https://railway.app" target="_blank" style="color:var(--teal-dark);font-weight:600">Railway</a>) and log in with your version control account'},
+      {id:'s7b', html:'Click <strong>"Add New Project"</strong> or <strong>"Import from Git"</strong>'},
+      {id:'s7c', html:'Select the repo you just pushed — the platform detects your project type automatically'},
+      {id:'s7d', html:'Click <strong>Deploy</strong> — the platform handles everything'},
+      {id:'s7e', html:'In ~60 seconds you\'ll get a live URL — share it with anyone!'},
+    ],
+    callout:{type:'green', icon:'🌟', title:'The best part', body:'From now on, every time you push new code to your version control platform, your deployment platform automatically rebuilds and updates your live site. No extra steps. It just happens.'},
+  },
+];
+
+const TOTAL = STEPS.reduce((n,s)=>n+s.tasks.length,0);
+let cur = 0, confettiFired = false;
+function ld(id){return localStorage.getItem(id)==='1'}
+function sv(id,v){localStorage.setItem(id,v?'1':'0')}
+function countDone(){return STEPS.reduce((n,s)=>n+s.tasks.filter(t=>ld(t.id)).length,0)}
+function stepDone(i){return STEPS[i].tasks.every(t=>ld(t.id))}
+
+function renderDots(){
+  const tr=document.getElementById('dot-track');tr.innerHTML='';
+  STEPS.forEach((s,i)=>{
+    if(i>0){const l=document.createElement('div');l.className='s-line'+(stepDone(i-1)?' done':'');tr.appendChild(l)}
+    const d=document.createElement('div');
+    d.className='s-dot'+(i===cur?' active':'')+(stepDone(i)?' done':'');
+    d.textContent=stepDone(i)?'✓':s.num;d.title=`Step ${s.num}: ${s.title}`;
+    d.onclick=()=>goTo(i);tr.appendChild(d);
+  });
+}
+function renderProg(){
+  const done=countDone(),pct=Math.round(done/TOTAL*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent=`${done} of ${TOTAL} tasks complete`;
+  if(done===TOTAL){document.getElementById('done-banner').classList.add('show');if(!confettiFired){confettiFired=true;launchConfetti()}}
+}
+function renderStep(){
+  const s=STEPS[cur];
+  const tasks=s.tasks.map(t=>{const ck=ld(t.id);return`<li><div class="c-box${ck?' checked':''}" id="bx-${t.id}" onclick="tog('${t.id}')">${ck?'✓':''}</div><span class="c-label${ck?' checked':''}" id="lb-${t.id}" onclick="tog('${t.id}')">${t.html}</span></li>`}).join('');
+  const prompts=s.prompts?`<div class="pblock" style="margin-top:1.2rem"><div class="pblock-label">💬 Example prompts to try</div>${s.prompts.map(p=>`<div class="pitem">${p}</div>`).join('')}</div>`:'';
+  const c=s.callout,cl=c?`<div class="callout ${c.type==='pink'?'teal':c.type}"><strong>${c.icon} ${c.title}</strong><p>${c.body}</p></div>`:'';
+  document.getElementById('step-card').innerHTML=`<div class="step-head"><div class="step-badge">Step ${s.num} of ${STEPS.length}</div><h2>${s.emoji} ${s.title}</h2></div><div class="step-body"><p class="step-intro">${s.intro}</p><ul class="checklist">${tasks}</ul>${prompts}${cl}</div>`;
+  document.getElementById('prev-btn').disabled=cur===0;
+  document.getElementById('step-count').textContent=`Step ${cur+1} of ${STEPS.length}`;
+  const nb=document.getElementById('next-btn');
+  if(cur===STEPS.length-1){nb.textContent='All done! 🎉';nb.className='nbtn next finish';nb.onclick=()=>document.getElementById('done-banner').scrollIntoView({behavior:'smooth'})}
+  else{nb.textContent='Next →';nb.className='nbtn next';nb.onclick=()=>changeStep(1)}
+  renderDots();renderProg();
+}
+function tog(id){
+  const ck=!ld(id);sv(id,ck);
+  const bx=document.getElementById('bx-'+id),lb=document.getElementById('lb-'+id);
+  bx.textContent=ck?'✓':'';bx.classList.toggle('checked',ck);lb.classList.toggle('checked',ck);
+  renderDots();renderProg();
+}
+function changeStep(d){
+  const n=cur+d;if(n<0||n>=STEPS.length)return;
+  animOut(d>0?20:-20,()=>{cur=n;renderStep();animIn();document.getElementById('step-card').scrollIntoView({behavior:'smooth',block:'start'})});
+}
+function goTo(i){if(i===cur)return;const d=i>cur?20:-20;animOut(d,()=>{cur=i;renderStep();animIn()})}
+function animOut(dy,cb){const c=document.getElementById('step-card');c.style.transition='opacity .18s,transform .18s';c.style.opacity='0';c.style.transform=`translateY(${dy}px)`;setTimeout(cb,190)}
+function animIn(){const c=document.getElementById('step-card');c.style.transition='none';c.style.opacity='0';c.style.transform='translateY(12px)';requestAnimationFrame(()=>{c.style.transition='opacity .28s,transform .28s';c.style.opacity='1';c.style.transform='translateY(0)'})}
+
+function launchConfetti(){
+  const cv=document.getElementById('confetti-canvas'),ctx=cv.getContext('2d');
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  const colors=['#18DCDC','#006464','#F5501C','#D8FF00','#F25BB6','#fff'];
+  const pieces=Array.from({length:120},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height-cv.height,r:Math.random()*7+4,d:Math.random()*80+20,color:colors[Math.floor(Math.random()*colors.length)],t:Math.random()*Math.PI*2,ts:Math.random()*.07+.03}));
+  let angle=0,frame=0;
+  function draw(){ctx.clearRect(0,0,cv.width,cv.height);angle+=.01;frame++;pieces.forEach(p=>{p.t+=p.ts;p.y+=(Math.cos(angle+p.d)+1.6)*1.5;p.x+=Math.sin(angle)*.8;ctx.beginPath();ctx.lineWidth=p.r;ctx.strokeStyle=p.color;ctx.moveTo(p.x+Math.sin(p.t)*10,p.y);ctx.lineTo(p.x+Math.sin(p.t)*10-8,p.y+p.r);ctx.stroke()});if(frame<260)requestAnimationFrame(draw);else ctx.clearRect(0,0,cv.width,cv.height)}
+  draw();
+}
+
+renderStep();
+</script>
+</body>
+</html>
