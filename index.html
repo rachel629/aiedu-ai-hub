@@ -208,6 +208,25 @@ footer a{color:var(--teal);text-decoration:none}
 
 #confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:9999}
 
+/* ── FEATURED USER ── */
+.fu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-top:1rem}
+.fu-box{background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem}
+.fu-top{display:flex;gap:.9rem;align-items:center}
+.fu-photo{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:800;color:#fff;flex-shrink:0;overflow:hidden}
+.fu-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.fu-label{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-600);margin-bottom:.15rem}
+.fu-name{font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:800}
+.fu-project{font-weight:700;font-size:.85rem;margin-bottom:.3rem}
+.fu-desc{font-size:.835rem;color:var(--gray-600);line-height:1.6;margin-bottom:.5rem}
+.fu-footer{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:auto}
+.fu-cta{font-size:.8rem;font-weight:700;color:var(--teal-dark)}
+.fu-link{font-size:.8rem;font-weight:700;color:var(--navy);text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;padding:.28rem .75rem;border:2px solid var(--gray-300);border-radius:99px;transition:all .2s}
+.fu-link:hover{border-color:var(--teal);color:var(--teal-dark)}
+.fu-placeholder{border:2px dashed var(--gray-300);border-radius:var(--radius);padding:1.1rem 1.4rem;margin-top:2rem;display:flex;align-items:center;gap:.85rem;background:var(--gray-100)}
+.fu-placeholder-icon{font-size:1.5rem;flex-shrink:0}
+.fu-placeholder p{font-size:.855rem;color:var(--gray-600);line-height:1.55}
+.fu-placeholder a{color:var(--teal-dark);font-weight:700}
+
 @media(max-width:640px){
   .step-head,.step-body{padding:1.25rem}
   .shero{padding:2rem 1.25rem}
@@ -323,6 +342,13 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📋</span><span class="acc-title">Paste your existing content — AI works with what you give it</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">You don't need to describe everything from scratch. Paste your rough notes, a previous report, bullet points from a meeting — then ask the AI to transform it. "Clean up these notes into a structured summary" or "Turn these bullets into flowing paragraphs."</div></div></div>
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🔄</span><span class="acc-title">Ask for multiple versions</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">If the first draft isn't right, don't rewrite it yourself — ask for variations. "Give me three versions of this opener with different tones." "Write this as a shorter version and a longer version." Pick the best parts and ask the AI to combine them.</div></div></div>
     </div></div>
+
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.75rem">Featured colleague</div>
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-icon">⭐</div>
+      <p>Know a colleague doing something creative with AI writing? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
+    </div>
   </div>
 </div>
 
@@ -359,6 +385,13 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">✏️</span><span class="acc-title">Add shorthand during the meeting</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Granola lets you type quick notes while it's recording. You don't need full sentences — just type "follow up w/ Maria on budget" or "!! Rachel to share draft by Friday." Granola weaves your shorthand into the final structured notes intelligently.</div></div></div>
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📤</span><span class="acc-title">Use AI to create follow-up artifacts</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Don't just read the auto-generated notes — use them as input for follow-up work. Paste the notes into Claude and ask it to: write the follow-up email, draft a project brief based on what was discussed, or create a one-pager summarizing the decisions made.</div></div></div>
     </div></div>
+
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.75rem">Featured colleague</div>
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-icon">⭐</div>
+      <p>Know a colleague with a great Granola or meeting notes workflow? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
+    </div>
   </div>
 </div>
 
@@ -374,8 +407,8 @@ footer a{color:var(--teal);text-decoration:none}
     <div class="stitle">Design & presentation tools</div>
     <div class="ssub">Canva AI is the most accessible entry point if your team already uses Canva. Gamma is worth trying if you want an AI-first deck-building experience.</div>
     <div class="tool-grid">
-      <div class="tcard"><div class="tcard-name">Canva AI</div><span class="tcard-tag">canva.com</span><div class="tcard-desc">Canva's built-in AI features let you generate images, write slide copy, resize designs for any format, and create full presentations from a text prompt. Works within the Canva interface you may already know.</div><div class="tcard-tip">Try "Magic Design" — paste your content and Canva generates a full branded deck in seconds.</div><a href="https://canva.com" target="_blank" rel="noopener" style="color:#ec4899">canva.com →</a></div>
-      <div class="tcard"><div class="tcard-name">Gamma</div><span class="tcard-tag">gamma.app</span><div class="tcard-desc">An AI-first presentation tool. Type a topic or paste your outline and Gamma generates a complete, visually polished deck. Each slide is editable, and you can ask Gamma to rewrite or redesign any section in plain English.</div><div class="tcard-tip">Great for quickly generating a first draft of a deck that you then refine — much faster than building from a blank template.</div><a href="https://gamma.app" target="_blank" rel="noopener" style="color:#ec4899">gamma.app →</a></div>
+      <div class="tcard"><div class="tcard-name">Canva AI ⭐</div><span class="tcard-tag">Enterprise account</span><div class="tcard-desc">aiEDU has an enterprise Canva account — you already have access. Canva's AI features let you generate images, write slide copy, resize designs for any format, and create full presentations from a text prompt.</div><div class="tcard-tip">Try "Magic Design" — paste your content and Canva generates a full branded deck in seconds. Log in with your aiEDU Google account.</div><a href="https://canva.com" target="_blank" rel="noopener" style="color:#ec4899">canva.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Gamma</div><span class="tcard-tag">gamma.app — free tier</span><div class="tcard-desc">An AI-first presentation tool. Type a topic or paste your outline and Gamma generates a complete, visually polished deck. Each slide is editable and you can ask Gamma to rewrite or redesign any section in plain English. The free tier is what we use.</div><div class="tcard-tip">Great for quickly generating a first draft of a deck that you then refine — much faster than building from a blank template.</div><a href="https://gamma.app" target="_blank" rel="noopener" style="color:#ec4899">gamma.app →</a></div>
       <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">For slide content</span><div class="tcard-desc">Before you open a design tool, use an AI assistant to plan your narrative. Ask it to outline a 10-slide deck, write the key message for each slide, or draft speaker notes. Then drop the content into Canva or Gamma.</div><div class="tcard-tip">"Create a 10-slide outline for a funder presentation about our AI literacy program. Each slide should have a headline and 3 bullets."</div></div>
     </div>
 
@@ -393,6 +426,13 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🖼️</span><span class="acc-title">Use Canva AI to generate on-brand visuals</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Instead of searching stock photo sites, use Canva's AI image generator to create visuals that match your exact concept. Be specific: "An illustration of a teacher and student looking at a tablet together, warm colors, flat design style."</div></div></div>
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">♻️</span><span class="acc-title">Repurpose a deck into other formats</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Once you have a deck, paste the content into Claude and ask it to turn it into: a one-page leave-behind, a 3-paragraph email summary, social media posts, or a talking points sheet for a phone call.</div></div></div>
     </div></div>
+
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.75rem">Featured colleague</div>
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-icon">⭐</div>
+      <p>Know a colleague creating great presentations or visuals with AI? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
+    </div>
   </div>
 </div>
 
@@ -408,10 +448,13 @@ footer a{color:var(--teal);text-decoration:none}
     <div class="stitle">Research & synthesis tools</div>
     <div class="ssub">These tools let you work with large amounts of text quickly — summarizing, comparing, and extracting what matters.</div>
     <div class="tool-grid">
-      <div class="tcard"><div class="tcard-name">NotebookLM</div><span class="tcard-tag">Google — free</span><div class="tcard-desc">Upload PDFs, Google Docs, websites, or YouTube videos. NotebookLM builds a private knowledge base from your sources and lets you ask questions, generate summaries, and create an AI-powered "podcast" overview. Nothing leaves your notebook.</div><div class="tcard-tip">Best for: synthesizing 5–10 research papers or reports at once, with citations to sources.</div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:#b45309">notebooklm.google.com →</a></div>
-      <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">Upload documents</span><div class="tcard-desc">Both let you upload PDFs or paste long text directly into the chat. Ask any question about the document or ask for a structured summary. Claude is particularly good at nuanced analysis and following specific formatting instructions.</div><div class="tcard-tip">You can upload multiple documents and ask "What do these reports agree on?" or "What's missing from this analysis?"</div></div>
-      <div class="tcard"><div class="tcard-name">Perplexity</div><span class="tcard-tag">perplexity.ai</span><div class="tcard-desc">An AI search engine that answers questions with cited sources from the web. Great for quickly getting a landscape view of a topic, checking recent developments, or finding relevant research with links to original sources.</div><div class="tcard-tip">Unlike ChatGPT, Perplexity searches the web in real time and shows you its sources — useful when you need verifiable, up-to-date information.</div><a href="https://perplexity.ai" target="_blank" rel="noopener" style="color:#b45309">perplexity.ai →</a></div>
+      <div class="tcard"><div class="tcard-name">Claude Projects</div><span class="tcard-tag">anthropic.com</span><div class="tcard-desc">Go beyond one-off document uploads. Claude Projects give you a persistent workspace with custom instructions and uploaded files — so every conversation starts knowing your context. Upload your org's key frameworks, rubrics, or reports once; they stay available across all chats in that project.</div><div class="tcard-tip">Create a project per research area (e.g. "AI PD Research") with relevant docs uploaded. Then ask questions across all of them in one conversation.</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#b45309">claude.ai →</a></div>
+      <div class="tcard"><div class="tcard-name">Gemini + Google Drive</div><span class="tcard-tag">google.com</span><div class="tcard-desc">Gemini reads directly from your Google Drive — summarize a Doc, analyze a Sheet, or ask questions across multiple Drive files without downloading anything. The Gemini panel built into Google Docs lets you query or rewrite any document without leaving the page.</div><div class="tcard-tip">In Google Docs, click the Gemini icon (or "Help me write") to summarize the doc, pull key themes, or suggest edits — no copy-pasting.</div><a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:#b45309">gemini.google.com →</a></div>
+      <div class="tcard"><div class="tcard-name">NotebookLM</div><span class="tcard-tag">Google — free</span><div class="tcard-desc">Upload PDFs, Google Docs, websites, or YouTube videos. NotebookLM builds a private knowledge base and lets you ask questions across all sources with citations back to the original. Can also generate a surprisingly good AI "podcast" summary of your sources.</div><div class="tcard-tip">Best for synthesizing 5–10 research papers at once — it will cite exactly where in the source each answer comes from.</div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:#b45309">notebooklm.google.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Perplexity</div><span class="tcard-tag">perplexity.ai</span><div class="tcard-desc">An AI search engine that answers questions with cited sources from the live web. Great for landscape scans, recent developments, and finding relevant research you don't already have — it searches in real time and shows you every source it used.</div><div class="tcard-tip">Use when you need verifiable, up-to-date information on a topic rather than working from documents you already have.</div><a href="https://perplexity.ai" target="_blank" rel="noopener" style="color:#b45309">perplexity.ai →</a></div>
     </div>
+
+    <div class="callout blue"><strong>🤔 Gemini or NotebookLM — which one?</strong><p><strong>Use Gemini</strong> when your sources are already in Google Drive, you want to work inside Google Docs or Sheets, or you need quick answers from a handful of documents you already have. <strong>Use NotebookLM</strong> when you're pulling together sources from multiple places (PDFs, websites, YouTube), want to build a growing knowledge base over time, or need citations that point back to the exact sentence in a source.</p></div>
 
     <div class="pblock">
       <div class="pblock-label">💬 Example prompts</div>
@@ -427,6 +470,13 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🎯</span><span class="acc-title">Ask for the specific format you need</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Don't just ask "summarize this." Specify: "Give me a 1-page executive summary," "Create a table of key findings," "Write 3 paragraphs I can include in a grant proposal," or "List the top 5 takeaways as bullet points with a sentence of context each."</div></div></div>
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🔗</span><span class="acc-title">Use NotebookLM for ongoing research projects</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Create a notebook for each major research area (e.g., "AI PD effectiveness research," "State AI policy landscape"). Add sources as you find them. Over time it becomes a searchable knowledge base you can query anytime — and share with colleagues.</div></div></div>
     </div></div>
+
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.75rem">Featured colleague</div>
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-icon">⭐</div>
+      <p>Know a colleague using AI to synthesize research faster? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
+    </div>
   </div>
 </div>
 
@@ -463,6 +513,13 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🤖</span><span class="acc-title">Use Claude to help you build the automation</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Describe what you want to automate to Claude and ask it to outline the workflow steps, suggest which apps to connect, and write any AI prompt that should be part of the automation. "I want to automatically summarize new emails from grant contacts and post them to Slack. What would the Make scenario look like?"</div></div></div>
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">✅</span><span class="acc-title">Keep humans in the loop for anything public-facing</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Until you fully trust an automation, build in a human review step — auto-generate the draft, but don't auto-send it. Have Make post a draft to a Google Doc or save it to Gmail Drafts so you can review before it goes out. Remove the human step once you've confirmed the quality is reliable.</div></div></div>
     </div></div>
+
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.75rem">Featured colleague</div>
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-icon">⭐</div>
+      <p>Know a colleague who has built a useful automation for the team? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
+    </div>
   </div>
 </div>
 
@@ -668,18 +725,90 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">💾</span><span class="acc-title">Save to version control often</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Every time things are working, commit and push to GitHub. If you break something while experimenting, you can always roll back to the version that worked.</div></div></div>
     </div>
 
-    <div class="slabel" style="margin-top:2rem">Bookmark this</div>
-    <div class="stitle">Quick Reference</div>
-    <table class="rtable">
-      <thead><tr><th>Category</th><th>Popular Examples</th><th>What It Does</th></tr></thead>
-      <tbody>
-        <tr><td><strong>🤖 AI Coding Assistant</strong></td><td>Claude Code, GitHub Copilot, ChatGPT/Codex, Gemini</td><td>Understands plain English and writes code for you</td></tr>
-        <tr><td><strong>💻 Code Editor</strong></td><td>VS Code, Cursor, Windsurf, Conductor, Replit</td><td>Your workspace — manage files, write code, chat with your AI</td></tr>
-        <tr><td><strong>🐙 Version Control</strong></td><td>GitHub, GitLab, Bitbucket</td><td>Back up your code with complete version history</td></tr>
-        <tr><td><strong>▲ Deployment Platform</strong></td><td>Vercel, Netlify, Railway, GitHub Pages</td><td>Publish your project live on the internet</td></tr>
-        <tr><td><strong>🗄️ Database & Backend</strong></td><td>Supabase, Firebase, Neon, PlanetScale</td><td>Store and retrieve data from your app</td></tr>
-      </tbody>
-    </table>
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.5rem">What aiEDU staff have built</div>
+    <p style="font-size:.92rem;color:var(--gray-600);margin-bottom:1rem;line-height:1.65">Real tools built by your colleagues — no prior coding experience required.</p>
+    <div class="fu-grid">
+
+      <div class="fu-box">
+        <div class="fu-top">
+          <div class="fu-photo" style="background:#F5501C">EM</div>
+          <div><div class="fu-label">⭐ Featured Builder</div><div class="fu-name">Emma</div></div>
+        </div>
+        <div class="fu-project">AI Readiness Self Assessment</div>
+        <p class="fu-desc">A portal where district partners self-rate against aiEDU's AI Readiness rubrics. Built with a full back-end and live Airtable integration — district responses feed directly into aiEDU's data systems.</p>
+        <div class="fu-footer">
+          <span class="fu-cta">💬 Reach out to Emma!</span>
+          <a class="fu-link" href="https://aireadinessselfassessmentplatform.vercel.app/" target="_blank" rel="noopener">View live →</a>
+        </div>
+      </div>
+
+      <div class="fu-box">
+        <div class="fu-top">
+          <div class="fu-photo" style="background:#006464">SH</div>
+          <div><div class="fu-label">⭐ Featured Builder</div><div class="fu-name">Shelby</div></div>
+        </div>
+        <div class="fu-project">Curriculum Management System</div>
+        <p class="fu-desc">A web app where K–12 educators sign in to browse and download aiEDU curriculum. Download events are tracked for impact reporting, with all curriculum data sourced live from Airtable.</p>
+        <div class="fu-footer">
+          <span class="fu-cta">💬 Reach out to Shelby!</span>
+          <a class="fu-link" href="https://aieducurriculumportal.vercel.app/" target="_blank" rel="noopener">View live →</a>
+        </div>
+      </div>
+
+      <div class="fu-box">
+        <div class="fu-top">
+          <div class="fu-photo" style="background:#F25BB6">DR</div>
+          <div><div class="fu-label">⭐ Featured Builder</div><div class="fu-name">Drew</div></div>
+        </div>
+        <div class="fu-project">NextStep Assessment</div>
+        <p class="fu-desc">An AI-powered simulator for student AI readiness assessment. Students interact with an intentionally flawed AI to analyze its responses — an engaging, novel way to measure competency progress.</p>
+        <div class="fu-footer">
+          <span class="fu-cta">💬 Reach out to Drew!</span>
+          <a class="fu-link" href="https://nextstepsimulator.vercel.app" target="_blank" rel="noopener">View live →</a>
+        </div>
+      </div>
+
+      <div class="fu-box">
+        <div class="fu-top">
+          <div class="fu-photo" style="background:#1a1f3c">NA</div>
+          <div><div class="fu-label">⭐ Featured Builder</div><div class="fu-name">Na</div></div>
+        </div>
+        <div class="fu-project">Internal Goal Tracker</div>
+        <p class="fu-desc">Designed for Program Leads to conduct partner assessments and track progress with ease. A full-stack internal tool with Airtable integration — filling a gap that Airtable's own visualization couldn't.</p>
+        <div class="fu-footer">
+          <span class="fu-cta">💬 Reach out to Na!</span>
+          <a class="fu-link" href="https://partnerassessment.vercel.app/" target="_blank" rel="noopener">View live →</a>
+        </div>
+      </div>
+
+      <div class="fu-box">
+        <div class="fu-top">
+          <div class="fu-photo" style="background:#3b82f6">KH</div>
+          <div><div class="fu-label">⭐ Featured Builder</div><div class="fu-name">Khushali</div></div>
+        </div>
+        <div class="fu-project">Cohort Learning Platform</div>
+        <p class="fu-desc">A resource hub for PLC participants and facilitators — more interactive than a Google Sheet. Supports live engagement opportunities during PLCs and serves both internal staff and external participants.</p>
+        <div class="fu-footer">
+          <span class="fu-cta">💬 Reach out to Khushali!</span>
+          <a class="fu-link" href="https://cohortlearningplatform.vercel.app/" target="_blank" rel="noopener">View live →</a>
+        </div>
+      </div>
+
+      <div class="fu-box">
+        <div class="fu-top">
+          <div class="fu-photo" style="background:#8b5cf6">KR</div>
+          <div><div class="fu-label">⭐ Featured Builder</div><div class="fu-name">Kristen</div></div>
+        </div>
+        <div class="fu-project">AI Policy Review Tool</div>
+        <p class="fu-desc">Built for Ohio K–12 districts to get structured feedback on their AI policies. A practical external tool that turns policy review from a manual process into an interactive guided experience.</p>
+        <div class="fu-footer">
+          <span class="fu-cta">💬 Reach out to Kristen!</span>
+          <a class="fu-link" href="https://aipolicy-reviewtool.vercel.app/" target="_blank" rel="noopener">View live →</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
