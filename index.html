@@ -482,6 +482,128 @@ footer a{color:var(--teal);text-decoration:none}
         <div style="font-size:1rem;font-weight:800;margin-bottom:.45rem;color:var(--teal-dark)">What is vibe coding?</div>
         <p style="font-size:.92rem;color:var(--gray-600);line-height:1.7">Vibe coding is a way of building software where you describe what you want in plain English and an AI writes the code. You don't need to know programming languages or syntax — just explain what you're building.</p>
         <p style="font-size:.92rem;color:var(--gray-600);line-height:1.7;margin-top:.5rem">Think of it like directing a world-class developer: you describe the vision, the AI handles the technical work. This guide is tool-agnostic — the concepts apply regardless of which AI or editor you choose.</p>
+        <blockquote style="margin-top:1.1rem;border-left:4px solid var(--teal);background:var(--navy);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:.9rem 1.15rem">
+          <p style="font-size:.88rem;color:#e8fffe;line-height:1.7;font-style:italic">"Fully giving in to the vibes — embracing exponentials, letting AI write all the code, describing what you want and iterating until it works."</p>
+          <footer style="font-size:.76rem;color:var(--teal);font-weight:700;margin-top:.4rem">— Andrej Karpathy, AI researcher, 2025</footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- Chat vs GPT vs Vibe Coding -->
+    <div class="slabel">Chat vs. custom GPT vs. vibe coding</div>
+    <div class="stitle">Three ways AI can help you build</div>
+    <p class="ssub" style="margin-bottom:1rem">Not everything needs to be an app. Here's how the three approaches compare — and when to reach for each one.</p>
+    <div style="overflow-x:auto;margin-bottom:2rem">
+      <table class="rtable">
+        <thead><tr><th></th><th>💬 Chat with AI</th><th>🤖 Custom GPT / Chatbot</th><th>💻 Vibe Coded App</th></tr></thead>
+        <tbody>
+          <tr><td><strong>What you get back</strong></td><td>A text response</td><td>A configured chat experience</td><td>A working interactive tool</td></tr>
+          <tr><td><strong>Where it lives</strong></td><td>Chat window</td><td>Shareable chat link</td><td>Live URL — anyone can open it</td></tr>
+          <tr><td><strong>Who can use it</strong></td><td>Just you</td><td>Anyone with the link</td><td>Anyone — no AI account needed</td></tr>
+          <tr><td><strong>Key skill needed</strong></td><td>Writing good prompts</td><td>System prompting + configuration</td><td>Describing what you want + iterating</td></tr>
+          <tr><td><strong>Best for</strong></td><td>One-off questions, drafts, analysis</td><td>Repeatable AI conversations</td><td>Tools that need to "run" — calculators, trackers, quizzes, forms</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Is this a vibe coding idea? -->
+    <div class="slabel">Is this a vibe coding idea?</div>
+    <div class="stitle" style="margin-bottom:.5rem">A quick gut-check</div>
+    <p style="font-size:.92rem;color:var(--gray-600);margin-bottom:1.25rem;line-height:1.65">Ask yourself: does this need to <em>run</em>? If someone needs to interact with it repeatedly, and a text response won't cut it — it's probably a vibe coding idea.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-bottom:2rem">
+      <div style="background:#f0fdf4;border:2px solid #86efac;border-radius:var(--radius);padding:1.25rem">
+        <div style="font-weight:800;font-size:.85rem;color:#166534;margin-bottom:.75rem">✅ Good fit for vibe coding</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem">
+          <li style="font-size:.85rem;color:#166534;display:flex;gap:.5rem"><span>✓</span>Used multiple times or by multiple people</li>
+          <li style="font-size:.85rem;color:#166534;display:flex;gap:.5rem"><span>✓</span>The output is interactive, not just text</li>
+          <li style="font-size:.85rem;color:#166534;display:flex;gap:.5rem"><span>✓</span>You have domain expertise to fact-check the result</li>
+          <li style="font-size:.85rem;color:#166534;display:flex;gap:.5rem"><span>✓</span>Doesn't need access to sensitive data or multiple systems</li>
+        </ul>
+      </div>
+      <div style="background:#fff7ed;border:2px solid #fed7aa;border-radius:var(--radius);padding:1.25rem">
+        <div style="font-weight:800;font-size:.85rem;color:#9a3412;margin-bottom:.75rem">⚠️ Maybe try chat instead</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem">
+          <li style="font-size:.85rem;color:#9a3412;display:flex;gap:.5rem"><span>→</span>You only need the answer once</li>
+          <li style="font-size:.85rem;color:#9a3412;display:flex;gap:.5rem"><span>→</span>A plain text response solves it just fine</li>
+          <li style="font-size:.85rem;color:#9a3412;display:flex;gap:.5rem"><span>→</span>The output needs careful fact-checking and you can't verify it</li>
+          <li style="font-size:.85rem;color:#9a3412;display:flex;gap:.5rem"><span>→</span>Needs PII, user login, or connections to multiple systems</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Anatomy of a Starting Prompt -->
+    <div class="slabel">Anatomy of a starting prompt</div>
+    <div class="stitle" style="margin-bottom:.5rem">The four questions a great first prompt answers</div>
+    <p style="font-size:.92rem;color:var(--gray-600);margin-bottom:1.25rem;line-height:1.65">You don't need technical jargon — just answer these four questions clearly and your AI can do the rest.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:.85rem;margin-bottom:1.25rem">
+      <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.2rem;border-top:4px solid var(--teal)">
+        <div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.3rem">1. Who &amp; their goal</div>
+        <p style="font-size:.83rem;color:var(--gray-600);line-height:1.55">Who is using this? What are they trying to accomplish?</p>
+      </div>
+      <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.2rem;border-top:4px solid var(--teal)">
+        <div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.3rem">2. What's baked in</div>
+        <p style="font-size:.83rem;color:var(--gray-600);line-height:1.55">What context, content, or data is already built into the tool?</p>
+      </div>
+      <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.2rem;border-top:4px solid var(--teal)">
+        <div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.3rem">3. What they input</div>
+        <p style="font-size:.83rem;color:var(--gray-600);line-height:1.55">What does the user type in or interact with?</p>
+      </div>
+      <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.2rem;border-top:4px solid var(--teal)">
+        <div style="font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.3rem">4. What it produces</div>
+        <p style="font-size:.83rem;color:var(--gray-600);line-height:1.55">What does the finished tool output or display?</p>
+      </div>
+    </div>
+    <div class="pblock" style="margin-bottom:2rem">
+      <div class="pblock-label">💬 Example prompt: summer camp activity generator</div>
+      <div class="pitem"><strong style="color:var(--teal)">Who &amp; goal:</strong> A summer camp counselor who needs quick activity ideas for their group</div>
+      <div class="pitem"><strong style="color:var(--teal)">Baked in:</strong> Age ranges (8–12, 13–16), activity types (outdoor, indoor, rainy day), and a bank of pre-loaded activities</div>
+      <div class="pitem"><strong style="color:var(--teal)">They input:</strong> Age group + available time + indoor or outdoor</div>
+      <div class="pitem"><strong style="color:var(--teal)">It produces:</strong> 3 activity suggestions with materials needed and step-by-step instructions</div>
+    </div>
+
+    <!-- Front-end vs Back-end -->
+    <div class="slabel">Front-end vs. back-end</div>
+    <div class="stitle" style="margin-bottom:.5rem">What's the difference?</div>
+    <p style="font-size:.92rem;color:var(--gray-600);margin-bottom:1.25rem;line-height:1.65">Most beginner vibe coding projects are front-end only — and that's totally fine for a lot of use cases.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-bottom:.75rem">
+      <div style="background:var(--teal-pale);border:2px solid rgba(24,220,220,.3);border-radius:var(--radius);padding:1.25rem">
+        <div style="font-weight:800;font-size:.92rem;color:var(--teal-dark);margin-bottom:.5rem">🖥️ Front-end</div>
+        <p style="font-size:.85rem;color:var(--gray-600);line-height:1.6;margin-bottom:.65rem">The visual layer — everything the user sees and interacts with. Runs in the browser. No server needed.</p>
+        <p style="font-size:.83rem;color:var(--teal-dark);font-weight:600">Good for: calculators, quizzes, generators, info tools, portfolios</p>
+      </div>
+      <div style="background:var(--gray-100);border:2px solid var(--gray-300);border-radius:var(--radius);padding:1.25rem">
+        <div style="font-weight:800;font-size:.92rem;color:var(--gray-600);margin-bottom:.5rem">⚙️ Back-end</div>
+        <p style="font-size:.85rem;color:var(--gray-600);line-height:1.6;margin-bottom:.55rem">Needed when your app has to remember things or behave differently for different people.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.3rem">
+          <li style="font-size:.82rem;color:var(--gray-600);display:flex;gap:.4rem"><span>→</span>Saving data across sessions</li>
+          <li style="font-size:.82rem;color:var(--gray-600);display:flex;gap:.4rem"><span>→</span>User login / accounts</li>
+          <li style="font-size:.82rem;color:var(--gray-600);display:flex;gap:.4rem"><span>→</span>Data that changes dynamically</li>
+          <li style="font-size:.82rem;color:var(--gray-600);display:flex;gap:.4rem"><span>→</span>Multiple users sharing the same data</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout yellow" style="margin-bottom:2rem"><strong>💡 Start front-end first</strong><p>Most useful tools don't need a backend to get started. Build the front-end prototype — see if it solves the problem. Add a backend later if people are using it and need to save data.</p></div>
+
+    <!-- aiEDU build policy -->
+    <div class="slabel">aiEDU build policy</div>
+    <div class="stitle" style="margin-bottom:.5rem">What can you build and share right now?</div>
+    <p style="font-size:.92rem;color:var(--gray-600);margin-bottom:1.25rem;line-height:1.65">Before you share or launch anything you've built, know what's approved to ship vs. what needs a review first.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-bottom:2rem">
+      <div style="background:#f0fdf4;border:2px solid #86efac;border-radius:var(--radius);padding:1.25rem">
+        <div style="font-weight:800;font-size:.88rem;color:#166534;margin-bottom:.7rem">✅ Keep building</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li style="font-size:.83rem;color:#166534;display:flex;gap:.5rem;align-items:flex-start"><span style="flex-shrink:0">✓</span><span>Internal tools and workflows <em>(check with Kate for any Airtable connections)</em></span></li>
+          <li style="font-size:.83rem;color:#166534;display:flex;gap:.5rem;align-items:flex-start"><span style="flex-shrink:0">✓</span><span>External products with no authentication or data storage</span></li>
+          <li style="font-size:.83rem;color:#166534;display:flex;gap:.5rem;align-items:flex-start"><span style="flex-shrink:0">✓</span><span>Prototypes and experiments <em>(get manager + Kate approval before sharing externally)</em></span></li>
+        </ul>
+      </div>
+      <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:var(--radius);padding:1.25rem">
+        <div style="font-weight:800;font-size:.88rem;color:#991b1b;margin-bottom:.7rem">🚧 Hold — needs engineering review first</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li style="font-size:.83rem;color:#991b1b;display:flex;gap:.5rem;align-items:flex-start"><span style="flex-shrink:0">→</span><span>External-facing products with user authentication</span></li>
+          <li style="font-size:.83rem;color:#991b1b;display:flex;gap:.5rem;align-items:flex-start"><span style="flex-shrink:0">→</span><span>Any tool that collects or stores participant data</span></li>
+          <li style="font-size:.83rem;color:#991b1b;display:flex;gap:.5rem;align-items:flex-start"><span style="flex-shrink:0">→</span><span>Anything connecting to production systems or databases with real data</span></li>
+        </ul>
       </div>
     </div>
 
