@@ -13,7 +13,7 @@
   --white:#fff;--gray-100:#f7f8fc;--gray-200:#eef0f7;--gray-300:#d1d5e0;--gray-600:#4b5570;--text:#1a1f3c;
   --radius:16px;--radius-sm:10px;
   --shadow-sm:0 2px 12px rgba(26,31,60,.08);--shadow:0 4px 24px rgba(26,31,60,.12);
-  --c-write:#3b82f6;--c-notes:#8b5cf6;--c-design:#ec4899;--c-research:#f59e0b;--c-auto:#f97316;--c-vibe:#18DCDC;
+  --c-write:#3b82f6;--c-notes:#8b5cf6;--c-design:#ec4899;--c-research:#f59e0b;--c-auto:#f97316;--c-data:#10b981;--c-vibe:#18DCDC;
 }
 body{font-family:'Inter',system-ui,sans-serif;background:var(--gray-100);color:var(--text);min-height:100vh}
 
@@ -36,6 +36,7 @@ header img.logo{height:34px}
 .tab-btn[data-tab="design"].active{border-bottom-color:var(--c-design)}
 .tab-btn[data-tab="research"].active{border-bottom-color:var(--c-research)}
 .tab-btn[data-tab="automations"].active{border-bottom-color:var(--c-auto)}
+.tab-btn[data-tab="data"].active{border-bottom-color:var(--c-data)}
 .tab-btn[data-tab="vibecoding"].active{border-bottom-color:var(--c-vibe)}
 
 /* ── PANELS ── */
@@ -59,6 +60,7 @@ header img.logo{height:34px}
 .shero.design{background:linear-gradient(135deg,#be185d,#ec4899)}
 .shero.research{background:linear-gradient(135deg,#b45309,#f59e0b)}
 .shero.auto{background:linear-gradient(135deg,#c2410c,#f97316)}
+.shero.data{background:linear-gradient(135deg,#065f46,#10b981)}
 .shero.vibe{background:linear-gradient(135deg,var(--navy),var(--navy-light))}
 
 /* ── TOOL CARDS ── */
@@ -76,6 +78,7 @@ header img.logo{height:34px}
 .design .tcard-tag{background:#fce7f3;color:#be185d}
 .research .tcard-tag{background:#fef3c7;color:#b45309}
 .auto .tcard-tag{background:#ffedd5;color:#c2410c}
+.data .tcard-tag{background:#d1fae5;color:#065f46}
 .vibe .tcard-tag{background:var(--teal-pale);color:var(--teal-dark)}
 
 /* ── CALLOUT ── */
@@ -137,6 +140,7 @@ header img.logo{height:34px}
 .ov-d{background:linear-gradient(135deg,#be185d,#ec4899)}
 .ov-r{background:linear-gradient(135deg,#b45309,#f59e0b)}
 .ov-a{background:linear-gradient(135deg,#c2410c,#f97316)}
+.ov-data{background:linear-gradient(135deg,#065f46,#10b981)}
 .ov-v{background:linear-gradient(135deg,var(--teal-dark),var(--teal))}
 
 /* ── VIBE CODING STEPS ── */
@@ -250,7 +254,8 @@ footer a{color:var(--teal);text-decoration:none}
   <button class="tab-btn" data-tab="notes">📝 Meeting Notes</button>
   <button class="tab-btn" data-tab="design">🎨 Design & Slides</button>
   <button class="tab-btn" data-tab="research">🔍 Research</button>
-  <button class="tab-btn" data-tab="automations">⚡ Automations</button>
+  <button class="tab-btn" data-tab="data">📊 Data & Analysis</button>
+  <button class="tab-btn" data-tab="automations">🔗 Workflows</button>
   <button class="tab-btn" data-tab="vibecoding">💻 Vibe Coding</button>
 </nav>
 
@@ -268,22 +273,25 @@ footer a{color:var(--teal);text-decoration:none}
       <div class="quiz-title">What are you trying to do today?</div>
       <div class="quiz-sub">Pick the scenario that fits best — we'll point you to the right section.</div>
       <div class="quiz-grid" id="quiz-grid">
-        <div class="qcard" data-tab="writing" data-title="AI Writing &amp; Documents" data-body="Learn to draft reports, program overviews, grant narratives, and emails in minutes using Claude, ChatGPT, or Gemini.">
+        <div class="qcard" data-tab="writing" data-title="AI Writing &amp; Documents" data-body="Use Claude or Gemini to draft reports, program overviews, grant narratives, and emails in minutes.">
           <span class="qcard-icon">📄</span><span class="qcard-text">I want to draft or polish a document — report, proposal, or email</span>
         </div>
-        <div class="qcard" data-tab="notes" data-title="Meeting Notes &amp; Follow-ups" data-body="Set up Granola (aiEDU's licensed tool) to auto-capture meetings and turn notes into structured summaries and action items.">
-          <span class="qcard-icon">🎙️</span><span class="qcard-text">I want to catch up on — or get more out of — my meeting notes</span>
+        <div class="qcard" data-tab="notes" data-title="Meeting Notes &amp; Follow-ups" data-body="Use Granola (aiEDU's licensed tool) to auto-capture meetings, then Claude or Gemini to turn notes into structured summaries and action items.">
+          <span class="qcard-icon">🎙️</span><span class="qcard-text">I want to capture or get more out of my meeting notes</span>
         </div>
-        <div class="qcard" data-tab="design" data-title="Design &amp; Presentations" data-body="Use Canva AI and Gamma to create polished decks and visuals — no design experience needed.">
+        <div class="qcard" data-tab="design" data-title="Design &amp; Presentations" data-body="Use Canva (aiEDU enterprise account) and Core Design for polished decks and visuals — no design experience needed.">
           <span class="qcard-icon">🎨</span><span class="qcard-text">I want to create a presentation or visual for a partner or funder</span>
         </div>
-        <div class="qcard" data-tab="research" data-title="Research &amp; Synthesis" data-body="Use NotebookLM or Claude to summarize long reports, extract key insights, and synthesize multiple sources at once.">
-          <span class="qcard-icon">📚</span><span class="qcard-text">I want to quickly understand a long research paper or report</span>
+        <div class="qcard" data-tab="research" data-title="Research &amp; Synthesis" data-body="Use Claude Projects or Gemini to build a persistent workspace that references your key documents — summarize reports, extract insights, and synthesize multiple sources.">
+          <span class="qcard-icon">📚</span><span class="qcard-text">I want to quickly understand a long research paper or synthesize multiple sources</span>
         </div>
-        <div class="qcard" data-tab="automations" data-title="Automations &amp; Workflows" data-body="Start with a simple automation — like routing meeting notes to Slack — and build up to powerful multi-step AI workflows.">
-          <span class="qcard-icon">⚡</span><span class="qcard-text">I want to automate a repetitive task or connect two tools together</span>
+        <div class="qcard" data-tab="data" data-title="Data &amp; Analysis" data-body="Pull and visualize data from Airtable using Claude or Gemini — no SQL or coding required.">
+          <span class="qcard-icon">📊</span><span class="qcard-text">I want to analyze data or create a chart from our Airtable records</span>
         </div>
-        <div class="qcard" data-tab="vibecoding" data-title="Vibe Coding" data-body="Build a real interactive app for staff or program participants — no coding experience needed. Step-by-step guide walks you through everything.">
+        <div class="qcard" data-tab="automations" data-title="Workflows &amp; Automations" data-body="Connect your tools and automate repetitive tasks — from routing meeting summaries to Slack, to building AI-powered multi-step workflows.">
+          <span class="qcard-icon">🔗</span><span class="qcard-text">I want to automate a repetitive task or connect two tools together</span>
+        </div>
+        <div class="qcard" data-tab="vibecoding" data-title="Vibe Coding" data-body="Build a real interactive app using Lovable, Bolt.new, Claude, or AI Studio — no coding experience needed.">
           <span class="qcard-icon">💻</span><span class="qcard-text">I want to build an app or interactive tool for staff or participants</span>
         </div>
       </div>
@@ -298,12 +306,61 @@ footer a{color:var(--teal);text-decoration:none}
     <div class="slabel">Browse all topics</div>
     <div class="stitle" style="margin-bottom:1rem">Where do you want to start?</div>
     <div class="ov-grid">
-      <div class="ovcard ov-w" onclick="switchTab('writing')"><span>✍️</span><h3>AI Writing & Documents</h3><p>Draft reports, emails, grant narratives, and program overviews in minutes</p></div>
+      <div class="ovcard ov-w" onclick="switchTab('writing')"><span>✍️</span><h3>AI Writing & Documents</h3><p>Draft reports, emails, grant narratives, and program overviews with Claude or Gemini</p></div>
       <div class="ovcard ov-n" onclick="switchTab('notes')"><span>📝</span><h3>Meeting Notes</h3><p>Auto-capture meetings with Granola and turn notes into structured action items</p></div>
-      <div class="ovcard ov-d" onclick="switchTab('design')"><span>🎨</span><h3>Design & Presentations</h3><p>Create polished decks and visuals with Canva AI and Gamma</p></div>
-      <div class="ovcard ov-r" onclick="switchTab('research')"><span>🔍</span><h3>Research & Synthesis</h3><p>Summarize research, extract insights, and build a knowledge base with AI</p></div>
-      <div class="ovcard ov-a" onclick="switchTab('automations')"><span>⚡</span><h3>Automations & Workflows</h3><p>Automate repetitive tasks and build powerful multi-step AI workflows</p></div>
+      <div class="ovcard ov-d" onclick="switchTab('design')"><span>🎨</span><h3>Design & Presentations</h3><p>Create polished decks and visuals with Canva (enterprise) and Core Design</p></div>
+      <div class="ovcard ov-r" onclick="switchTab('research')"><span>🔍</span><h3>Research & Synthesis</h3><p>Build persistent workspaces with Claude Projects or Gemini to reference the same docs across everything you do</p></div>
+      <div class="ovcard ov-data" onclick="switchTab('data')"><span>📊</span><h3>Data & Analysis</h3><p>Pull, analyze, and visualize data from Airtable using Claude or Gemini</p></div>
+      <div class="ovcard ov-a" onclick="switchTab('automations')"><span>🔗</span><h3>Workflows</h3><p>Automate repetitive tasks and build multi-step AI workflows with Make or Zapier</p></div>
       <div class="ovcard ov-v" onclick="switchTab('vibecoding')"><span>💻</span><h3>Vibe Coding</h3><p>Build real apps and tools by describing what you want in plain English</p></div>
+    </div>
+
+    <div style="margin-top:2.5rem">
+      <div class="slabel">Set this up once</div>
+      <div class="stitle" style="margin-bottom:.5rem">Your aiEDU AI Workspace</div>
+      <p style="font-size:.93rem;color:var(--gray-600);line-height:1.7;margin-bottom:1.25rem">Before you dig into any specific section, it's worth setting up a persistent workspace so your AI tools always have context about aiEDU — your programs, frameworks, and documents. Do this once and it pays off across writing, research, design, and slides.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-bottom:1.25rem">
+
+        <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.4rem;border-top:4px solid var(--teal)">
+          <div style="font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);margin-bottom:.4rem">Claude</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:800;margin-bottom:.5rem">Create a Claude Project</div>
+          <ol style="padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;color:var(--gray-600);line-height:1.55">
+            <li>Go to <strong>claude.ai</strong> → click <strong>Projects</strong> in the left sidebar</li>
+            <li>Create a project: <em>"aiEDU Work"</em></li>
+            <li>Add custom instructions: your role, our mission, programs you work on</li>
+            <li>Upload key docs: rubrics, frameworks, program overviews, recent reports</li>
+            <li>Every new chat in this project starts with full context — no re-explaining needed</li>
+          </ol>
+        </div>
+
+        <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.4rem;border-top:4px solid #4285f4">
+          <div style="font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1a73e8;margin-bottom:.4rem">Gemini</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:800;margin-bottom:.5rem">Organize Your Google Drive</div>
+          <ol style="padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;color:var(--gray-600);line-height:1.55">
+            <li>Create a <strong>shared "AI Context" folder</strong> in Google Drive</li>
+            <li>Drop in key docs: program descriptions, rubrics, frameworks, templates</li>
+            <li>In any Google Doc, click the <strong>Gemini icon</strong> to ask questions about your Drive files</li>
+            <li>In Gemini chat, use <strong>"@" to reference specific Drive files</strong> directly</li>
+            <li>Any colleague with Drive access can query the same shared context</li>
+          </ol>
+        </div>
+
+        <div style="background:#fff;border:2px solid var(--gray-200);border-radius:var(--radius);padding:1.4rem;border-top:4px solid #b45309">
+          <div style="font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#b45309;margin-bottom:.4rem">NotebookLM</div>
+          <div style="font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:800;margin-bottom:.5rem">Build a Knowledge Notebook</div>
+          <ol style="padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;color:var(--gray-600);line-height:1.55">
+            <li>Go to <strong>notebooklm.google.com</strong></li>
+            <li>Create a notebook per topic area: <em>"AI PD Research," "Partner Landscape"</em></li>
+            <li>Add sources: PDFs, Google Docs, website URLs, YouTube videos</li>
+            <li>Ask questions and get cited answers across all sources at once</li>
+            <li>Share the notebook with teammates so everyone queries the same library</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <div class="callout teal"><strong>💡 Which one should I use?</strong><p>Use <strong>Claude Projects</strong> for deep writing and analysis tasks where you want nuanced, instruction-following AI. Use <strong>Gemini + Google Drive</strong> when your documents already live in Drive and you want to work without leaving Google. Use <strong>NotebookLM</strong> when you're synthesizing many sources — especially PDFs and external research — with citations back to the source.</p></div>
     </div>
   </div>
 </div>
@@ -318,10 +375,9 @@ footer a{color:var(--teal);text-decoration:none}
   <div class="wrap write">
     <div class="slabel">The tools</div>
     <div class="stitle">Choose your writing assistant</div>
-    <div class="ssub">All of these understand plain English instructions. Different models have different strengths — try a few and see what works for you.</div>
+    <div class="ssub">Claude and Gemini are aiEDU's primary writing tools. Both understand plain English instructions — try them and see what fits your workflow.</div>
     <div class="tool-grid">
       <div class="tcard"><div class="tcard-name">Claude</div><span class="tcard-tag">anthropic.com</span><div class="tcard-desc">Excellent at following nuanced instructions, maintaining a consistent voice, and working through complex multi-part documents. Strong for grant writing and program narratives.</div><div class="tcard-tip">Try: "Write this in a warm but professional tone for a foundation audience."</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#3b82f6">claude.ai →</a></div>
-      <div class="tcard"><div class="tcard-name">ChatGPT</div><span class="tcard-tag">openai.com</span><div class="tcard-desc">The most widely used AI writing tool. Canvas workspace lets you edit and refine text side-by-side. Great for drafts, rewrites, and brainstorming document structures.</div><div class="tcard-tip">Try: "Give me three different opening paragraphs for this report."</div><a href="https://chatgpt.com" target="_blank" rel="noopener" style="color:#3b82f6">chatgpt.com →</a></div>
       <div class="tcard"><div class="tcard-name">Gemini</div><span class="tcard-tag">google.com</span><div class="tcard-desc">Best if you live in Google Workspace. Can read and write directly to Google Docs, pull context from your Drive, and help you edit documents without copy-pasting.</div><div class="tcard-tip">Try opening Gemini directly inside Google Docs via the "Help me write" button.</div><a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:#3b82f6">gemini.google.com →</a></div>
     </div>
 
@@ -364,11 +420,10 @@ footer a{color:var(--teal);text-decoration:none}
 
     <div class="slabel">The tools</div>
     <div class="stitle">Meeting note tools</div>
-    <div class="ssub">Granola is the primary tool for the team. Others are listed as alternatives if Granola doesn't fit a specific use case.</div>
+    <div class="ssub">Granola is the primary tool for the team — it runs automatically in the background. Claude or Gemini handle the manual fallback when Granola isn't available.</div>
     <div class="tool-grid">
       <div class="tcard"><div class="tcard-name">Granola ⭐</div><span class="tcard-tag">Team licensed</span><div class="tcard-desc">Runs silently in the background on your Mac. Captures system audio from any meeting without a bot joining the call. Generates structured notes with action items. You can add your own shorthand during the meeting and Granola weaves it in.</div><div class="tcard-tip">Download the Mac app at granola.so and sign in with your aiEDU Google account.</div><a href="https://granola.so" target="_blank" rel="noopener" style="color:#8b5cf6">granola.so →</a></div>
-      <div class="tcard"><div class="tcard-name">Otter.ai</div><span class="tcard-tag">Alternative</span><div class="tcard-desc">Joins your calls as a bot participant and transcribes in real time. Good for Zoom and Google Meet. Free tier includes 300 minutes/month of transcription. Useful if you're on Windows or need real-time transcript sharing with others.</div><div class="tcard-tip">Best for meetings where you want to share the live transcript link with attendees.</div><a href="https://otter.ai" target="_blank" rel="noopener" style="color:#8b5cf6">otter.ai →</a></div>
-      <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">Manual option</span><div class="tcard-desc">If you have rough notes or a transcript already, paste them into Claude or ChatGPT and ask it to clean them up. Great for converting messy bullet points into a structured summary you can send to the team.</div><div class="tcard-tip">Works with any notes — even voice memo transcripts from your phone.</div></div>
+      <div class="tcard"><div class="tcard-name">Claude / Gemini</div><span class="tcard-tag">Manual option</span><div class="tcard-desc">If you have rough notes or a transcript already, paste them into Claude or Gemini and ask it to clean them up. Great for converting messy bullet points or voice memo transcripts into a structured summary you can send to the team.</div><div class="tcard-tip">Works with any notes — paste them in and ask for a structured summary with decisions, action items, and open questions.</div></div>
     </div>
 
     <div class="pblock">
@@ -405,11 +460,11 @@ footer a{color:var(--teal);text-decoration:none}
   <div class="wrap design">
     <div class="slabel">The tools</div>
     <div class="stitle">Design & presentation tools</div>
-    <div class="ssub">Canva AI is the most accessible entry point if your team already uses Canva. Gamma is worth trying if you want an AI-first deck-building experience.</div>
+    <div class="ssub">Canva is the primary design tool — aiEDU has an enterprise account so you already have access. Use Core Design for brand guidelines, and Claude or Gemini to plan your narrative before you start designing.</div>
     <div class="tool-grid">
-      <div class="tcard"><div class="tcard-name">Canva AI ⭐</div><span class="tcard-tag">Enterprise account</span><div class="tcard-desc">aiEDU has an enterprise Canva account — you already have access. Canva's AI features let you generate images, write slide copy, resize designs for any format, and create full presentations from a text prompt.</div><div class="tcard-tip">Try "Magic Design" — paste your content and Canva generates a full branded deck in seconds. Log in with your aiEDU Google account.</div><a href="https://canva.com" target="_blank" rel="noopener" style="color:#ec4899">canva.com →</a></div>
-      <div class="tcard"><div class="tcard-name">Gamma</div><span class="tcard-tag">gamma.app — free tier</span><div class="tcard-desc">An AI-first presentation tool. Type a topic or paste your outline and Gamma generates a complete, visually polished deck. Each slide is editable and you can ask Gamma to rewrite or redesign any section in plain English. The free tier is what we use.</div><div class="tcard-tip">Great for quickly generating a first draft of a deck that you then refine — much faster than building from a blank template.</div><a href="https://gamma.app" target="_blank" rel="noopener" style="color:#ec4899">gamma.app →</a></div>
-      <div class="tcard"><div class="tcard-name">Claude / ChatGPT</div><span class="tcard-tag">For slide content</span><div class="tcard-desc">Before you open a design tool, use an AI assistant to plan your narrative. Ask it to outline a 10-slide deck, write the key message for each slide, or draft speaker notes. Then drop the content into Canva or Gamma.</div><div class="tcard-tip">"Create a 10-slide outline for a funder presentation about our AI literacy program. Each slide should have a headline and 3 bullets."</div></div>
+      <div class="tcard"><div class="tcard-name">Canva ⭐</div><span class="tcard-tag">Enterprise account</span><div class="tcard-desc">aiEDU has an enterprise Canva account — you already have access. Use Magic Design to generate full branded decks from a text prompt, create AI-generated images, resize for any format, and edit with your brand kit baked in.</div><div class="tcard-tip">Log in with your aiEDU Google account. Try "Magic Design" — paste your content and Canva generates a full branded deck in seconds.</div><a href="https://canva.com" target="_blank" rel="noopener" style="color:#ec4899">canva.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Core Design</div><span class="tcard-tag">aiEDU brand system</span><div class="tcard-desc">aiEDU's internal design system and brand guidelines. Start here to understand the correct colors, fonts, logo usage, and design patterns before creating any public-facing materials in Canva or otherwise.</div><div class="tcard-tip">Check with your manager or the design team for access to the latest Core Design assets and guidelines.</div></div>
+      <div class="tcard"><div class="tcard-name">Claude / Gemini</div><span class="tcard-tag">For slide content</span><div class="tcard-desc">Before you open a design tool, use Claude or Gemini to plan your narrative. Ask it to outline a deck, write key messages per slide, or draft speaker notes. Drop the content into Canva once the story is solid.</div><div class="tcard-tip">"Create a 10-slide outline for a funder presentation about our AI literacy program. Each slide: a headline and 3 bullet points."</div></div>
     </div>
 
     <div class="pblock">
@@ -446,12 +501,11 @@ footer a{color:var(--teal);text-decoration:none}
   <div class="wrap research">
     <div class="slabel">The tools</div>
     <div class="stitle">Research & synthesis tools</div>
-    <div class="ssub">These tools let you work with large amounts of text quickly — summarizing, comparing, and extracting what matters.</div>
+    <div class="ssub">These three tools let you build persistent context around your work — so you're not re-uploading documents every session.</div>
     <div class="tool-grid">
       <div class="tcard"><div class="tcard-name">Claude Projects</div><span class="tcard-tag">anthropic.com</span><div class="tcard-desc">Go beyond one-off document uploads. Claude Projects give you a persistent workspace with custom instructions and uploaded files — so every conversation starts knowing your context. Upload your org's key frameworks, rubrics, or reports once; they stay available across all chats in that project.</div><div class="tcard-tip">Create a project per research area (e.g. "AI PD Research") with relevant docs uploaded. Then ask questions across all of them in one conversation.</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#b45309">claude.ai →</a></div>
       <div class="tcard"><div class="tcard-name">Gemini + Google Drive</div><span class="tcard-tag">google.com</span><div class="tcard-desc">Gemini reads directly from your Google Drive — summarize a Doc, analyze a Sheet, or ask questions across multiple Drive files without downloading anything. The Gemini panel built into Google Docs lets you query or rewrite any document without leaving the page.</div><div class="tcard-tip">In Google Docs, click the Gemini icon (or "Help me write") to summarize the doc, pull key themes, or suggest edits — no copy-pasting.</div><a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:#b45309">gemini.google.com →</a></div>
       <div class="tcard"><div class="tcard-name">NotebookLM</div><span class="tcard-tag">Google — free</span><div class="tcard-desc">Upload PDFs, Google Docs, websites, or YouTube videos. NotebookLM builds a private knowledge base and lets you ask questions across all sources with citations back to the original. Can also generate a surprisingly good AI "podcast" summary of your sources.</div><div class="tcard-tip">Best for synthesizing 5–10 research papers at once — it will cite exactly where in the source each answer comes from.</div><a href="https://notebooklm.google.com" target="_blank" rel="noopener" style="color:#b45309">notebooklm.google.com →</a></div>
-      <div class="tcard"><div class="tcard-name">Perplexity</div><span class="tcard-tag">perplexity.ai</span><div class="tcard-desc">An AI search engine that answers questions with cited sources from the live web. Great for landscape scans, recent developments, and finding relevant research you don't already have — it searches in real time and shows you every source it used.</div><div class="tcard-tip">Use when you need verifiable, up-to-date information on a topic rather than working from documents you already have.</div><a href="https://perplexity.ai" target="_blank" rel="noopener" style="color:#b45309">perplexity.ai →</a></div>
     </div>
 
     <div class="callout blue"><strong>🤔 Gemini or NotebookLM — which one?</strong><p><strong>Use Gemini</strong> when your sources are already in Google Drive, you want to work inside Google Docs or Sheets, or you need quick answers from a handful of documents you already have. <strong>Use NotebookLM</strong> when you're pulling together sources from multiple places (PDFs, websites, YouTube), want to build a growing knowledge base over time, or need citations that point back to the exact sentence in a source.</p></div>
@@ -483,34 +537,34 @@ footer a{color:var(--teal);text-decoration:none}
 <!-- ═══════════════ AUTOMATIONS ═══════════════ -->
 <div id="tab-automations" class="tab-panel">
   <div class="shero auto"><div class="shero-inner">
-    <span class="sicon">⚡</span>
-    <h1>Automations & Workflows</h1>
-    <p>Connect your tools and automate repetitive tasks — from routing meeting summaries to Slack, to building AI pipelines that draft content automatically.</p>
+    <span class="sicon">🔗</span>
+    <h1>Workflows</h1>
+    <p>Build workflows that connect your tools and automate repetitive tasks — from routing meeting summaries to Slack, to running multi-step AI pipelines.</p>
   </div></div>
   <div class="wrap auto">
     <div class="slabel">The tools</div>
-    <div class="stitle">Automation platforms</div>
-    <div class="ssub">These platforms let you connect apps and build multi-step workflows — no code required for the basics. AI can be added at any step in the pipeline.</div>
+    <div class="stitle">Workflow tools</div>
+    <div class="ssub">These platforms let you build multi-step workflows that connect your tools — no code required for the basics.</div>
     <div class="tool-grid">
       <div class="tcard"><div class="tcard-name">Make</div><span class="tcard-tag">make.com</span><div class="tcard-desc">A visual workflow builder where you connect apps with drag-and-drop. Each "scenario" runs automatically when triggered. Make has deep Claude/OpenAI integration — you can add an AI step anywhere in a workflow to generate, classify, or transform content.</div><div class="tcard-tip">Good first automation: new Granola meeting note → Claude summarizes → posts to Slack channel.</div><a href="https://make.com" target="_blank" rel="noopener" style="color:#f97316">make.com →</a></div>
       <div class="tcard"><div class="tcard-name">Zapier</div><span class="tcard-tag">zapier.com</span><div class="tcard-desc">The most widely used automation tool, with 6,000+ app integrations. Simpler and more guided than Make. Good for straightforward trigger → action flows. Zapier also has a built-in AI step that uses ChatGPT to generate or transform text.</div><div class="tcard-tip">Easier to start with than Make. Great for simple two-step automations like form submission → draft email.</div><a href="https://zapier.com" target="_blank" rel="noopener" style="color:#f97316">zapier.com →</a></div>
       <div class="tcard"><div class="tcard-name">Claude Projects</div><span class="tcard-tag">Built-in context</span><div class="tcard-desc">Claude's Projects feature lets you create a persistent AI assistant with custom instructions and uploaded documents. Not a full automation platform, but great for creating specialized assistants — like a grant-writing helper that always knows your org's context and voice.</div><div class="tcard-tip">"You are an expert grant writer for aiEDU, an education nonprofit focused on AI literacy. Here is our mission, theory of change, and recent program data..."</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#f97316">claude.ai →</a></div>
     </div>
 
-    <div class="callout yellow"><strong>⚡ Where to start: one simple automation</strong><p>Pick one task you do manually at least weekly and automate just that. Good candidates: copy Granola notes to a shared doc, get a Slack message when a new form is submitted, auto-draft a follow-up email template when a meeting ends. Start small, learn the platform, then build up.</p></div>
+    <div class="callout yellow"><strong>🔗 Where to start: one simple workflow</strong><p>Pick one task you do manually at least weekly and automate just that. Good candidates: copy Granola notes to a shared doc, get a Slack message when a new form is submitted, auto-draft a follow-up email template when a meeting ends. Start small, learn the platform, then build up.</p></div>
 
     <div class="pblock">
-      <div class="pblock-label">💬 Automation ideas for aiEDU work</div>
+      <div class="pblock-label">💬 Workflow ideas for aiEDU work</div>
       <div class="pitem">New meeting note in Granola → AI summarizes → posts digest to #team-updates Slack channel</div>
       <div class="pitem">Google Form submission → AI generates a personalized response draft → sends to your inbox for review</div>
       <div class="pitem">New research paper added to a shared Google Drive folder → NotebookLM summary → posted to team doc</div>
       <div class="pitem">Calendar event ends → AI drafts follow-up email → saves to Drafts for you to review and send</div>
     </div>
 
-    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Build automations that actually stick</div>
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Build workflows that actually stick</div>
     <div class="acc-list">
-      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🗺️</span><span class="acc-title">Map the manual process before you automate it</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Before opening Make or Zapier, write out every step you do manually. "I get a form submission → I copy it to a spreadsheet → I draft an email response → I send it." Automation platforms mirror this structure — each step becomes a module in your workflow.</div></div></div>
-      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🤖</span><span class="acc-title">Use Claude to help you build the automation</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Describe what you want to automate to Claude and ask it to outline the workflow steps, suggest which apps to connect, and write any AI prompt that should be part of the automation. "I want to automatically summarize new emails from grant contacts and post them to Slack. What would the Make scenario look like?"</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🗺️</span><span class="acc-title">Map the manual process before you build it</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Before opening Make or Zapier, write out every step you do manually. "I get a form submission → I copy it to a spreadsheet → I draft an email response → I send it." Automation platforms mirror this structure — each step becomes a module in your workflow.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🤖</span><span class="acc-title">Use Claude to help you design the workflow</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Describe what you want to automate to Claude and ask it to outline the workflow steps, suggest which apps to connect, and write any AI prompt that should be part of the automation. "I want to automatically summarize new emails from grant contacts and post them to Slack. What would the Make scenario look like?"</div></div></div>
       <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">✅</span><span class="acc-title">Keep humans in the loop for anything public-facing</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Until you fully trust an automation, build in a human review step — auto-generate the draft, but don't auto-send it. Have Make post a draft to a Google Doc or save it to Gmail Drafts so you can review before it goes out. Remove the human step once you've confirmed the quality is reliable.</div></div></div>
     </div></div>
 
@@ -519,6 +573,51 @@ footer a{color:var(--teal);text-decoration:none}
     <div class="fu-placeholder">
       <div class="fu-placeholder-icon">⭐</div>
       <p>Know a colleague who has built a useful automation for the team? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ DATA & ANALYSIS ═══════════════ -->
+<div id="tab-data" class="tab-panel">
+  <div class="shero data"><div class="shero-inner">
+    <span class="sicon">📊</span>
+    <h1>Data & Analysis</h1>
+    <p>Pull data from Airtable, analyze it in plain English, and turn it into charts and summaries — no SQL or coding required.</p>
+  </div></div>
+  <div class="wrap data">
+    <div class="slabel">The approach</div>
+    <div class="stitle">AI as your data analyst</div>
+    <div class="ssub">Most of aiEDU's program data lives in Airtable. These workflows let you move that data into an AI tool and ask questions, create visualizations, and generate summaries — without writing a single formula.</div>
+
+    <div class="tool-grid">
+      <div class="tcard"><div class="tcard-name">Claude</div><span class="tcard-tag">anthropic.com</span><div class="tcard-desc">Export a CSV from Airtable and upload it directly to Claude. Ask questions in plain English: "What are the top 5 districts by participant count?" or "Summarize trends across cohorts." Claude can also write formulas, suggest visualizations, and draft narrative summaries from your data.</div><div class="tcard-tip">Best for: narrative summaries, pattern analysis, and generating charts as code (HTML/JS) you can paste anywhere.</div><a href="https://claude.ai" target="_blank" rel="noopener" style="color:#10b981">claude.ai →</a></div>
+      <div class="tcard"><div class="tcard-name">Gemini + Google Sheets</div><span class="tcard-tag">google.com</span><div class="tcard-desc">Export Airtable data to Google Sheets, then use the Gemini panel in Sheets to ask questions, write formulas, and create charts. The Gemini sidebar in Sheets lets you describe what you want and it builds the formula or chart for you.</div><div class="tcard-tip">In Google Sheets: click the Gemini icon in the sidebar → ask "Create a bar chart of participant counts by program" and it builds it automatically.</div><a href="https://sheets.google.com" target="_blank" rel="noopener" style="color:#10b981">sheets.google.com →</a></div>
+      <div class="tcard"><div class="tcard-name">Airtable + Claude</div><span class="tcard-tag">Connected workflow</span><div class="tcard-desc">For recurring reports, set up a Make or Zapier workflow that exports Airtable data on a schedule and sends it to Claude for a summary. The summary can be posted to Slack or saved to a Google Doc automatically.</div><div class="tcard-tip">Good for: weekly program reports, cohort progress snapshots, or stakeholder updates that repeat on a schedule.</div></div>
+    </div>
+
+    <div class="callout green"><strong>📋 Getting data out of Airtable</strong><p>In any Airtable view, click the <strong>grid icon → Download CSV</strong> to export your current filtered view. Then upload the CSV to Claude or import it into Google Sheets. For Airtable connections to apps you're building, check with Kate before connecting to production bases.</p></div>
+
+    <div class="pblock" style="margin-top:1.75rem">
+      <div class="pblock-label">💬 Example prompts</div>
+      <div class="pitem">"Here's a CSV of our program participants. How many are from each district? Show as a table."</div>
+      <div class="pitem">"What trends do you see in survey response scores across these three cohorts?"</div>
+      <div class="pitem">"Write a 3-paragraph narrative summary of this data for a funder report."</div>
+      <div class="pitem">"Create a formula in Google Sheets that calculates the completion rate for each row."</div>
+      <div class="pitem">"Here are our quarterly impact numbers. Create an HTML bar chart I can paste into a document."</div>
+    </div>
+
+    <div style="margin-top:2rem"><div class="slabel">Tips</div><div class="stitle" style="margin-bottom:1rem">Get better results from data analysis</div>
+    <div class="acc-list">
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🧹</span><span class="acc-title">Clean your data before uploading</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">AI works best with clean, consistent data. Before uploading a CSV, check for: blank rows, inconsistent capitalization (e.g. "Ohio" vs "ohio"), merged cells, or columns with mixed data types. A few minutes of cleanup saves a lot of confusion in the analysis.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">📝</span><span class="acc-title">Describe what the data means, not just what it is</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">When you upload data, give context: "This is a survey of K-12 educators who attended our PD sessions. Each row is one respondent. The 'score' column is their self-reported AI confidence on a 1–5 scale." The more the AI understands the meaning behind the columns, the more useful the analysis.</div></div></div>
+      <div class="acc-item"><button class="acc-toggle" onclick="toggleAcc(this)"><span class="acc-icon">🔒</span><span class="acc-title">Don't upload PII to AI tools</span><span class="acc-chev">▾</span></button><div class="acc-body"><div class="acc-inner">Before uploading any Airtable export, check whether it contains personally identifiable information — names, emails, phone numbers. If so, either anonymize the data first or aggregate it to remove individual rows. When in doubt, check with Kate or your manager before uploading participant data to any AI tool.</div></div></div>
+    </div></div>
+
+    <div class="slabel" style="margin-top:2rem">From the team</div>
+    <div class="stitle" style="margin-bottom:.75rem">Featured colleague</div>
+    <div class="fu-placeholder">
+      <div class="fu-placeholder-icon">⭐</div>
+      <p>Know a colleague doing creative things with Airtable data and AI? <a href="mailto:rachel@aiedu.org">Tell Rachel</a> and we'll feature them here.</p>
     </div>
   </div>
 </div>
@@ -664,33 +763,18 @@ footer a{color:var(--teal);text-decoration:none}
       </div>
     </div>
 
-    <div class="slabel">Pick your tool</div>
-    <div class="stitle">Which vibe coding tool is right for you?</div>
-    <div class="ssub">Tools fall into three tiers based on how much control and technical comfort they require. Start at the level that fits you — you can always move up.</div>
+    <div class="slabel">Recommended tools</div>
+    <div class="stitle" style="margin-bottom:.5rem">Four ways to start building</div>
+    <p class="ssub" style="margin-bottom:1rem">These are the four tools we recommend for aiEDU staff. Start with the one that fits your comfort level — you can always switch.</p>
 
-    <div class="diff-badge diff-b">🟢 Beginner — Chat-to-code</div>
     <div class="picker-grid">
-      <div class="pcard vibe"><h4>Claude</h4><div class="pc-cat">chat-to-code · anthropic.com</div><div class="pc-desc">Creates interactive web apps (called Artifacts) right in the chat — preview live, share by link, or copy the code. Excellent at understanding complex instructions.</div><ul class="pros"><li>Live preview of apps in chat</li><li>Free tier includes Artifacts</li><li>Best at nuanced instructions</li></ul><ul class="cons"><li>Single-file only — no backend</li></ul></div>
-      <div class="pcard vibe"><h4>ChatGPT</h4><div class="pc-cat">chat-to-code · openai.com</div><div class="pc-desc">Canvas workspace lets you write and preview code side by side. Massive community with tutorials for every use case.</div><ul class="pros"><li>Intuitive Canvas interface</li><li>Huge community + examples</li><li>Generates text, code, images</li></ul><ul class="cons"><li>Free tier has model limits</li><li>Single-file, no backend</li></ul></div>
-      <div class="pcard vibe"><h4>Gemini</h4><div class="pc-cat">chat-to-code · google.com</div><div class="pc-desc">Google's AI with Canvas for live code preview. Tight Google Workspace integration — free with a Google account.</div><ul class="pros"><li>Free with Google account</li><li>Live preview in Canvas</li><li>Exports to Docs, Sheets, Colab</li></ul><ul class="cons"><li>Full Canvas needs Gemini Advanced</li><li>Single-file frontend only</li></ul></div>
+      <div class="pcard vibe"><h4>Lovable</h4><div class="pc-cat">app-builder · lovable.dev</div><div class="pc-desc">Creates polished, functional web apps from plain English. No coding needed. Built-in hosting — your app goes live instantly. Best for: external-facing tools you want to look polished from day one.</div><ul class="pros"><li>No coding required</li><li>Polished results quickly</li><li>Instant deploy + hosting</li></ul><ul class="cons"><li>Free tier: ~5 credits/day</li></ul><a href="https://lovable.dev" target="_blank" rel="noopener" style="color:var(--teal-dark);font-size:.78rem;font-weight:700;display:inline-flex;gap:.25rem;margin-top:.65rem">lovable.dev →</a></div>
+      <div class="pcard vibe"><h4>Bolt.new</h4><div class="pc-cat">app-builder · bolt.new</div><div class="pc-desc">Browser-based full-stack app builder. Fast iteration from idea to working app — no install required. Best for: apps that need a database or back-end logic.</div><ul class="pros"><li>Full-stack (front-end + back-end)</li><li>No install — runs in browser</li><li>Free: 300K tokens/day</li></ul><ul class="cons"><li>Monthly token limit on free tier</li></ul><a href="https://bolt.new" target="_blank" rel="noopener" style="color:var(--teal-dark);font-size:.78rem;font-weight:700;display:inline-flex;gap:.25rem;margin-top:.65rem">bolt.new →</a></div>
+      <div class="pcard vibe"><h4>Claude</h4><div class="pc-cat">chat-to-code · claude.ai</div><div class="pc-desc">Creates interactive web apps (Artifacts) right in the chat — preview live, share by link. The fastest way to get a working prototype with zero setup. Best for: quick prototypes and single-page tools.</div><ul class="pros"><li>Live preview in chat</li><li>Share by link instantly</li><li>Zero setup</li></ul><ul class="cons"><li>Single-file only — no back-end</li></ul><a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--teal-dark);font-size:.78rem;font-weight:700;display:inline-flex;gap:.25rem;margin-top:.65rem">claude.ai →</a></div>
+      <div class="pcard vibe"><h4>AI Studio</h4><div class="pc-cat">prototyping · aistudio.google.com</div><div class="pc-desc">Google's platform for building with Gemini. Create interactive AI apps directly in your browser. Best for: tools that need Gemini's capabilities built in — quizzes, generators, AI-powered forms.</div><ul class="pros"><li>Free with Google account</li><li>Gemini built in natively</li><li>Easy to share prototypes</li></ul><ul class="cons"><li>More limited layout control</li></ul><a href="https://aistudio.google.com" target="_blank" rel="noopener" style="color:var(--teal-dark);font-size:.78rem;font-weight:700;display:inline-flex;gap:.25rem;margin-top:.65rem">aistudio.google.com →</a></div>
     </div>
 
-    <div class="diff-badge diff-i">🟡 Intermediate — App builders</div>
-    <div class="picker-grid">
-      <div class="pcard vibe"><h4>Lovable</h4><div class="pc-cat">app-builder · lovable.dev</div><div class="pc-desc">Creates polished, functional web apps from plain English. No coding needed. Built-in hosting — your app goes live instantly.</div><ul class="pros"><li>Polished results quickly</li><li>No coding required</li><li>Instant deploy + hosting</li></ul><ul class="cons"><li>Free tier: ~5 credits/day</li><li>Less control over code details</li></ul></div>
-      <div class="pcard vibe"><h4>Bolt.new</h4><div class="pc-cat">app-builder · bolt.new</div><div class="pc-desc">StackBlitz's browser-based full-stack app builder. Very fast iteration from idea to working app.</div><ul class="pros"><li>Fast — browser-based, no install</li><li>Full-stack (frontend + backend)</li><li>Free: 300K tokens/day</li></ul><ul class="cons"><li>Monthly token limit on free tier</li></ul></div>
-      <div class="pcard vibe"><h4>Replit</h4><div class="pc-cat">app-builder · replit.com</div><div class="pc-desc">Online coding environment with AI assistant. Works in your browser. Bridges app builders and coding agents — good for learning.</div><ul class="pros"><li>No install — runs in browser</li><li>AI explains code as you build</li><li>Easy deploy + sharing</li></ul><ul class="cons"><li>Free tier has compute limits</li></ul></div>
-      <div class="pcard vibe"><h4>Gamma / v0</h4><div class="pc-cat">specialized builders</div><div class="pc-desc">Gamma for presentations and documents. v0 (by Vercel) for React UI components — generates clean, deployable code.</div><ul class="pros"><li>Gamma: best for decks + docs</li><li>v0: production-quality React code</li></ul><ul class="cons"><li>Each tool is purpose-specific</li></ul></div>
-    </div>
-
-    <div class="diff-badge diff-a">🔴 Advanced — Coding agents</div>
-    <div class="picker-grid">
-      <div class="pcard vibe"><h4>Claude Code</h4><div class="pc-cat">coding-agent · anthropic.com</div><div class="pc-desc">Reads your entire codebase, plans an approach, writes across multiple files, runs tests, and fixes issues — all autonomously. Runs in your terminal or VS Code.</div><ul class="pros"><li>Full codebase context</li><li>Handles complex multi-file projects</li><li>Autonomous testing + debugging</li></ul><ul class="cons"><li>Requires terminal comfort</li><li>Needs a dev environment set up</li></ul></div>
-      <div class="pcard vibe"><h4>Codex</h4><div class="pc-cat">coding-agent · openai.com</div><div class="pc-desc">OpenAI's coding agent — writes, tests, and debugs code autonomously in a cloud sandbox. Requires ChatGPT Plus.</div><ul class="pros"><li>Fully autonomous in cloud</li><li>Good with existing codebases</li></ul><ul class="cons"><li>Requires ChatGPT Plus ($20/mo)</li></ul></div>
-      <div class="pcard vibe"><h4>GitHub Copilot</h4><div class="pc-cat">coding-agent · github.com</div><div class="pc-desc">The most widely adopted AI coding tool globally. Works inside VS Code, JetBrains, and others. Suggests code as you type and has an autonomous agent mode.</div><ul class="pros"><li>Free tier: 2,000 completions/mo</li><li>Works in editors you know</li><li>Supports all languages</li></ul><ul class="cons"><li>Requires familiarity with an IDE</li></ul></div>
-    </div>
-
-    <div class="callout teal"><strong>💡 Not sure where to start?</strong><p>If you're brand new, try Claude.ai or ChatGPT — describe what you want to build and ask it to create an interactive app. You'll get a working prototype in minutes with zero setup. Once you want more control or a real deployed site, move to Bolt.new or Lovable. Claude Code and Codex are for when you're ready to work with a full codebase.</p></div>
+    <div class="callout teal"><strong>💡 Which one should I start with?</strong><p>If you want something live today with zero setup, start with <strong>Claude</strong> — describe what you want and it builds a shareable prototype in minutes. Once you want a real deployed URL or a backend, move to <strong>Lovable</strong> or <strong>Bolt.new</strong>. Use <strong>AI Studio</strong> when you want Gemini's AI capabilities baked directly into the tool.</p></div>
   </div>
 
   <!-- Step-by-step guide -->
